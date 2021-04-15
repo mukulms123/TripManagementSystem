@@ -9,7 +9,7 @@ public class TMSMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SpringApplication.run(TMSMain.class, args);
-		System.out.println("Trip Management System Started");
+		System.out.println("_________Trip Management System Started_________");
 	}
 
 }
