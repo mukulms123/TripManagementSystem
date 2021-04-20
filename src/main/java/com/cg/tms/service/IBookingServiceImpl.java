@@ -2,11 +2,22 @@ package com.cg.tms.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.cg.tms.entities.Booking;
 import com.cg.tms.exceptions.BookingNotFoundException;
+import com.cg.tms.repository.IBookingRepository;
 
+@Service
+@Transactional
 public class IBookingServiceImpl implements IBookingService {
 
+	@Autowired
+	private IBookingRepository bRes;
+	
 	@Override
 	public Booking makeBooking(Booking booking) {
 		// TODO Auto-generated method stub

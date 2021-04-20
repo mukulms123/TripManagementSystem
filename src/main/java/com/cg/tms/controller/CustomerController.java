@@ -1,5 +1,6 @@
 package com.cg.tms.controller;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,19 +28,21 @@ public class CustomerController {
 		return "Hello!!";
 	}
 	
+	//change the parameters and change the return type
 	@GetMapping("/add")
 	public String addStudent() {
 	System.out.println("Adding Customer ");
 		Customer customer = new Customer("rima","rim123","def","9510859887","mail2rima@gmail.com");
 		Set<Feedback> feedbackSet = new HashSet<Feedback>();
-		feedbackSet.add(new Feedback("Hello",3));
-		feedbackSet.add(new Feedback("Nice",4));		
+		feedbackSet.add(new Feedback("Hello",3,LocalDate.now()));
+		feedbackSet.add(new Feedback("Nice",4,LocalDate.now()));		
 		if(feedbackSet!=null) {
 			for (Feedback feed : feedbackSet) {
 				customer.addFeedback(feed);
 			}
 		}
-		cService.addCustomer(customer);
-		return "Done!!";
+		Customer cust = cService.addCustomer(customer);
+		//Change it to dto and return it
+		return "Done";
 	}
 }

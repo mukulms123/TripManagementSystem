@@ -38,12 +38,11 @@ public class Feedback {
 		this.submitDate = submitDate;
 	}
 	
-	//constructor without Customer and Id
-	//Add date to this constructor 	:	Removed for testing purpose only
-	public Feedback(String feedback, int rating) {
+	//constructor without Customer and Id		:		remove later
+	public Feedback(String feedback, int rating, LocalDate submitDate) {
 		this.feedback = feedback;
 		this.rating = rating;
-//		this.submitDate = submitDate;
+		this.submitDate = submitDate;
 	}
 
 	public Feedback() {

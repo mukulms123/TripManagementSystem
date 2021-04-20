@@ -3,12 +3,14 @@ package com.cg.tms.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.cg.tms.entities.Customer;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.exceptions.PackageNotFoundException;
 import com.cg.tms.exceptions.RouteNotFoundException;
 
+@Repository
 public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
 	
 //	public Customer addCustomer(Customer customer);

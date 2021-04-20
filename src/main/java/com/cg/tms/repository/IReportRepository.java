@@ -1,8 +1,11 @@
 package com.cg.tms.repository;
 
+import org.springframework.stereotype.Repository;
+
 import com.cg.tms.entities.Report;
 import com.cg.tms.exceptions.ReportNotFoundException;
 
+@Repository
 public interface IReportRepository {
 	
 	

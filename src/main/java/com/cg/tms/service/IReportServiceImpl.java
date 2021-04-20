@@ -1,10 +1,21 @@
 package com.cg.tms.service;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.cg.tms.entities.Report;
 import com.cg.tms.exceptions.ReportNotFoundException;
+import com.cg.tms.repository.IReportRepository;
 
+@Service
+@Transactional
 public class IReportServiceImpl implements IReportService {
 
+	@Autowired
+	private IReportRepository rRes;
+	
 	@Override
 	public Report addReport(Report report) {
 		// TODO Auto-generated method stub
