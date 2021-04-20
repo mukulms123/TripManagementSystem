@@ -13,8 +13,18 @@ import com.cg.tms.exceptions.PackageNotFoundException;
 import com.cg.tms.exceptions.RouteNotFoundException;
 import com.cg.tms.repository.ICustomerRepository;
 
+@Service
+@Transactional
 public class ICustomerServiceImpl implements ICustomerService{
 
+	@Autowired
+	private ICustomerRepository cRes;
+	
+	@Override
+	public Customer addCustomer(Customer customer) {
+		Customer cust = cRes.save(customer);
+		return cust;
+	}
 
 	@Override
 	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
@@ -38,12 +48,6 @@ public class ICustomerServiceImpl implements ICustomerService{
 
 	@Override
 	public List<Customer> viewCustomerList(int routeId) throws RouteNotFoundException {
-		return null;
-	}
-
-	@Override
-	public Customer addCustomer(Customer customer) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

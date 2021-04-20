@@ -6,5 +6,6 @@ public class User {
 	private String userType;
 	private String password;
 	
+	
 
 }

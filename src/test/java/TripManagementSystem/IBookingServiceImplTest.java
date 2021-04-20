@@ -14,7 +14,7 @@ import com.cg.tms.service.IBookingServiceImpl;
 
 @ExtendWith({SpringExtension.class})
 @DataJpaTest
-@Import(IBookingServiceImpl.class)
+@Import(IBookingServiceImplTest.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class IBookingServiceImplTest {
 

@@ -18,15 +18,31 @@ import com.cg.tms.entities.Feedback;
 import com.cg.tms.service.ICustomerService;
 
 @RestController
-@RequestMapping("/customers")
-@Validated
+@RequestMapping("/customer")
 public class CustomerController {
 
+//	@Autowired
+//	private ICustomerService cService;
 	
-	@RequestMapping("/hello")
+	@GetMapping("/hello")
 	public String hello()
 	{
+		System.out.println("Calling Hello!!");
 		return "hello";
 	}
 	
+//	@ResponseStatus(code = HttpStatus.CREATED)
+//	@GetMapping("/add")
+//	public String addCustomer() {
+//		System.out.println("Adding to Database");
+//		Customer customer = new Customer("Nandita","nan123","Abc","981082455","mail2nanditarao@gmail.com");
+//		Set<Feedback> feedbackSet = null;
+//		if(feedbackSet!=null) {
+//			for (Feedback feed : feedbackSet) {
+//				customer.addFeedback(feed);
+//			}
+//		}
+//		cService.addCustomer(new Customer("Nandita","nan123","Abc","981082455","mail2nanditarao@gmail.com"));
+//		return "Done!!";
+//		}
 }

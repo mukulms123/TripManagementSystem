@@ -11,11 +11,11 @@ import com.cg.tms.exceptions.FeedbackNotFoundException;
 public interface IFeedbackRepository extends JpaRepository<Feedback, Integer>{
 	
 	
-		public Feedback  addFeedback(Feedback feedback);
-		public Feedback   findByFeedbackId(int feedbackId) throws FeedbackNotFoundException;
-		public Feedback   findByCustomerId(int customerId) throws CustomerNotFoundException;
-		public List<Feedback> viewAllFeedbacks();
-	
+//		public Feedback  addFeedback(Feedback feedback);
+//		public Feedback   findByFeedbackId(int feedbackId) throws FeedbackNotFoundException;
+//		public Feedback   findByCustomerId(int customerId) throws CustomerNotFoundException;
+//		public List<Feedback> viewAllFeedbacks();
+//	
 	
 
 }
