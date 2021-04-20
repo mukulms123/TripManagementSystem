@@ -1,6 +1,5 @@
 package TripManagementSystem;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -14,25 +13,5 @@ import com.cg.tms.service.IRouteServiceImpl;
 @Import(IRouteServiceImpl.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class IRouteServiceImplTest {
-	
-	@Test
-	public void testAddRoute() {
-	}
-	
-	@Test
-	public void testUpdateRoute() {
-	}
-	
-	@Test
-	public void testRemoveRoute() {
-	}
-	
-	@Test
-	public void testSearchRoute() {
-	}
-	
-	@Test
-	public void testViewRouteList() {
-	}
 
 }
