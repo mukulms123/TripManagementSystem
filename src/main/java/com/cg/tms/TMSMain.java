@@ -10,10 +10,15 @@ import com.cg.tms.repository.ICustomerRepository;
 public class TMSMain {
 
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		SpringApplication.run(TMSMain.class, args);
 		System.out.println("_________Trip Management System Started Listening to port 8085_________");
+<<<<<<< HEAD
 		
 		
+=======
+		System.out.println("Hello!!");
+>>>>>>> parent of c7b4f2c (testing1)
 	}
 
 }
