@@ -8,7 +8,7 @@ import com.cg.tms.entities.Feedback;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.exceptions.FeedbackNotFoundException;
 
-public interface IFeedbackRepository extends JpaRepository<Feedback, Integer>{
+public interface IFeedbackRepository extends JpaRepository<Feedback, String>{
 	
 	
 //		public Feedback  addFeedback(Feedback feedback);

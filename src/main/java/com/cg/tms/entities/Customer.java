@@ -16,7 +16,7 @@ public class Customer {
 
 	@Id
 	@GeneratedValue
-	private  Integer customerId;
+	private int customerId;
 	private String customerName;
 	private String  customerPassword;
 	private String address;
