@@ -1,15 +1,12 @@
 package TripManagementSystem;
 
-import java.util.List;
-
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.cg.tms.entities.Travels;
-import com.cg.tms.exceptions.TravelsNotFoundException;
 import com.cg.tms.service.ITravelsServiceImpl;
 
 @ExtendWith({SpringExtension.class})
@@ -18,19 +15,23 @@ import com.cg.tms.service.ITravelsServiceImpl;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ITravelsServiceImplTest {
 
-	public Travels  addTravels(Travels travels) {
-		return null;
+	@Test
+	public void testAddTravels() {
 	}
-	public Travels  updateTravels(Travels travels) throws TravelsNotFoundException {
-		return null;
+	
+	@Test
+	public void testUpdateTravels() {
 	}
-	public Travels  removeTravels(int travelsId) throws TravelsNotFoundException {
-		return null;
+	
+	@Test
+	public void testRemoveTravels() {
 	}
-	public Travels searchTravels(int travelsId) throws TravelsNotFoundException {
-		return null;
+	
+	@Test
+	public void testSearchTravels() {
 	}
-	public  List<Travels>  viewTravels() {
-		return null;
+	
+	@Test
+	public void testViewTravels() {
 	}
 }
