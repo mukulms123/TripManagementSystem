@@ -11,11 +11,9 @@ import com.cg.tms.entities.Booking;
 import com.cg.tms.exceptions.BookingNotFoundException;
 import com.cg.tms.repository.IBookingRepository;
 
-@Service
-@Transactional
 public class IBookingServiceImpl implements IBookingService {
 
-
+	//create res object
 	
 	@Override
 	public Booking makeBooking(Booking booking) {

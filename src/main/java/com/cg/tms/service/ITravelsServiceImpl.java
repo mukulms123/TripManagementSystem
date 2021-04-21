@@ -11,10 +11,10 @@ import com.cg.tms.entities.Travels;
 import com.cg.tms.exceptions.TravelsNotFoundException;
 import com.cg.tms.repository.ITravelsRespository;
 
-@Service
-@Transactional
+
 public class ITravelsServiceImpl implements ITravelsService {
 
+	//create res object
 	
 	@Override
 	public Travels addTravels(Travels travels) {

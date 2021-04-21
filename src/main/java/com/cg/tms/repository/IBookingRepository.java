@@ -9,8 +9,7 @@ import com.cg.tms.entities.Booking;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.exceptions.BookingNotFoundException;
 
-@Repository
-public interface IBookingRepository extends JpaRepository<Booking, Integer>{
+public interface IBookingRepository{
 	
 	
 //	public  Booking  makeBooking(Booking booking);

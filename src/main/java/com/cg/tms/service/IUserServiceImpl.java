@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import com.cg.tms.entities.User;
 import com.cg.tms.repository.IUserRepository;
 
-@Service
-@Transactional
+
 public class IUserServiceImpl implements IUserService {
 
+	//create res object
 	
 	@Override
 	public User addNewUser(User user) {

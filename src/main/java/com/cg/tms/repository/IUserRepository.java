@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.cg.tms.entities.Feedback;
 import com.cg.tms.entities.User;
 
-@Repository
-public interface IUserRepository extends JpaRepository<User, Integer>{
+
+public interface IUserRepository{
 //public  User addNewUser(User user);
 //public User signIn(User user);
 //public User signOut(User user);

@@ -10,10 +10,9 @@ import org.springframework.stereotype.Service;
 import com.cg.tms.exceptions.PackageNotFoundException;
 import com.cg.tms.repository.IPackageRepository;
 
-@Service
-@Transactional
 public class IPackageServiceImpl implements IPackageService {
 	
+	//create res object
 	@Override
 	public Package addPackage(Package pack) {
 		// TODO Auto-generated method stub

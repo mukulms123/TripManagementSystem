@@ -9,8 +9,8 @@ import com.cg.tms.entities.Feedback;
 import com.cg.tms.entities.Travels;
 import com.cg.tms.exceptions.TravelsNotFoundException;
 
-@Repository
-public interface ITravelsRespository extends JpaRepository<Travels, Integer>{
+
+public interface ITravelsRespository {
 	
 		
 //			public Travels  addTravels(Travels travels);

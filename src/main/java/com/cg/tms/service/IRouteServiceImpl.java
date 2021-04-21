@@ -12,10 +12,11 @@ import com.cg.tms.exceptions.RouteNotFoundException;
 import com.cg.tms.repository.IFeedbackRepository;
 import com.cg.tms.repository.IRouteRepository;
 
-@Service
-@Transactional
+
 public class IRouteServiceImpl implements IRouteService {
 
+	//create res object
+	
 	@Override
 	public Route addRoute(Route route) {
 		// TODO Auto-generated method stub

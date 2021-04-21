@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.tms.entities.Feedback;
 import com.cg.tms.entities.Report;
-import com.cg.tms.service.IFeedbackService;
 import com.cg.tms.service.IReportService;
 
 @RestController
 @RequestMapping("/report")
 @Validated
 public class ReportController {
-
+	
 	@Autowired
 	private IReportService rService;
 	
@@ -25,16 +24,18 @@ public class ReportController {
 	public String feedbackGreet()
 	{
 		System.out.println("Greeting!!");
-		return "Hello from feedback";		
+		return "Hello from Report";		
 	}
 	
-//	@GetMapping("/add")
-//	public String addFeedback()
-//	{
-//		Report rept = new Report("report1","evaluation");
-//		rService.addReport(rept);
-//		
-//		return "Done";
-//		
-//	}
+	@GetMapping("/add")
+	public String addReport()
+	{
+		Report rept = new Report();
+		rService.addReport(rept);
+	
+		
+		return "Done";
+		
+	}
+
 }

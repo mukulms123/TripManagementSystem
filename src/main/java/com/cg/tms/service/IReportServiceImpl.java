@@ -8,19 +8,19 @@ import org.springframework.stereotype.Service;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Report;
 import com.cg.tms.exceptions.ReportNotFoundException;
+import com.cg.tms.repository.IFeedbackRepository;
 import com.cg.tms.repository.IReportRepository;
 
 @Service
 @Transactional
 public class IReportServiceImpl implements IReportService {
-
 	@Autowired
 	private IReportRepository rRes;
 	
 	@Override
 	public Report addReport(Report report) {
 		Report rept = rRes.save(report);
-		return rept;		
+		return null;
 	}
 
 	@Override

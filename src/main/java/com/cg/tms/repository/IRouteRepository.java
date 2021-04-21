@@ -9,8 +9,8 @@ import com.cg.tms.entities.Feedback;
 import com.cg.tms.entities.Route;
 import com.cg.tms.exceptions.RouteNotFoundException;
 
-@Repository
-public interface IRouteRepository extends JpaRepository<Route, String>{
+
+public interface IRouteRepository{
 	
 	
 //	public  Route  addRoute(Route route);

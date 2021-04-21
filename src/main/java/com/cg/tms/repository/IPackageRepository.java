@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.cg.tms.entities.Feedback;
 import com.cg.tms.exceptions.PackageNotFoundException;
 
-@Repository
-public interface IPackageRepository extends JpaRepository<Feedback, Integer>{
+public interface IPackageRepository{
 	
 	
 //	public  Package  addPackage(Package pack);

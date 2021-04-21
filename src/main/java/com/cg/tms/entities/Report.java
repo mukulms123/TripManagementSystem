@@ -17,11 +17,6 @@ public class Report {
 	private String reportName;
 	private String reportType;
 	
-	//Adding Admin on my Own
-//	@OneToOne
-//	@JoinColumn(name = "admin_id")
-//	private Admin admin;
-	
 	//Constructor without Admin
 	public Report(int reportId, String reportName, String reportType) {
 		this.reportId = reportId;
@@ -31,21 +26,15 @@ public class Report {
 
 	//Constructor without Admin and Id
 	public Report(String reportName, String reportType) {
+		super();
 		this.reportName = reportName;
 		this.reportType = reportType;
 	}
-	
-	//toString without Admin
-	@Override
-	public String toString() {
-		return "Report [reportId=" + reportId + ", reportName=" + reportName + ", reportType=" + reportType + "]";
-	}
 
-	//Default constructor
+	//Default Constructor
 	public Report() {
 	}
 
-	//Getters and Setters
 	public int getReportId() {
 		return reportId;
 	}
@@ -69,12 +58,12 @@ public class Report {
 	public void setReportType(String reportType) {
 		this.reportType = reportType;
 	}
+	
+	//Generate Getters and Setters for admin
+	
+	
+	
+	
+	
 
-//	public Admin getAdmin() {
-//		return admin;
-//	}
-//
-//	public void setAdmin(Admin admin) {
-//		this.admin = admin;
-//	}
 }
