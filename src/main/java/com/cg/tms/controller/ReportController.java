@@ -1,8 +1,6 @@
 package com.cg.tms.controller;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -11,15 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.tms.entities.Feedback;
+import com.cg.tms.entities.Report;
 import com.cg.tms.service.IFeedbackService;
+import com.cg.tms.service.IReportService;
 
 @RestController
-@RequestMapping("/feedback")
+@RequestMapping("/report")
 @Validated
-public class FeedbackController {
+public class ReportController {
 
 	@Autowired
-	private IFeedbackService fService;
+	private IReportService rService;
 	
 	@RequestMapping("/hello")
 	public String feedbackGreet()
@@ -28,15 +28,13 @@ public class FeedbackController {
 		return "Hello from feedback";		
 	}
 	
-	@GetMapping("/add")
-	public String addFeedback()
-	{
-		Feedback feed = new Feedback("yo","nice",4,LocalDate.now());
-		fService.addFeedback(feed);
-		Feedback feeds = new Feedback("lol","perfect",5,LocalDate.now());
-		fService.addFeedback(feeds);
-		
-		return "Done";
-		
-	}
+//	@GetMapping("/add")
+//	public String addFeedback()
+//	{
+//		Report rept = new Report("report1","evaluation");
+//		rService.addReport(rept);
+//		
+//		return "Done";
+//		
+//	}
 }

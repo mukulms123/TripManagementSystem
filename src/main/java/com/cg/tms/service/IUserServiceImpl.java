@@ -12,8 +12,6 @@ import com.cg.tms.repository.IUserRepository;
 @Transactional
 public class IUserServiceImpl implements IUserService {
 
-	@Autowired
-	private IUserRepository uRes;
 	
 	@Override
 	public User addNewUser(User user) {

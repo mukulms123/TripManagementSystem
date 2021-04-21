@@ -13,9 +13,6 @@ import com.cg.tms.repository.IPackageRepository;
 @Service
 @Transactional
 public class IPackageServiceImpl implements IPackageService {
-
-	@Autowired
-	private IPackageRepository pRes;
 	
 	@Override
 	public Package addPackage(Package pack) {

@@ -15,8 +15,7 @@ import com.cg.tms.repository.IBookingRepository;
 @Transactional
 public class IBookingServiceImpl implements IBookingService {
 
-	@Autowired
-	private IBookingRepository bRes;
+
 	
 	@Override
 	public Booking makeBooking(Booking booking) {

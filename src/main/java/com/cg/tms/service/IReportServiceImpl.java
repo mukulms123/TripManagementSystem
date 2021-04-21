@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Report;
 import com.cg.tms.exceptions.ReportNotFoundException;
 import com.cg.tms.repository.IReportRepository;
@@ -18,8 +19,8 @@ public class IReportServiceImpl implements IReportService {
 	
 	@Override
 	public Report addReport(Report report) {
-		// TODO Auto-generated method stub
-		return null;
+		Report rept = rRes.save(report);
+		return rept;		
 	}
 
 	@Override

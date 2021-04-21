@@ -15,8 +15,6 @@ import com.cg.tms.repository.ITravelsRespository;
 @Transactional
 public class ITravelsServiceImpl implements ITravelsService {
 
-	@Autowired
-	private ITravelsRespository tRes;
 	
 	@Override
 	public Travels addTravels(Travels travels) {

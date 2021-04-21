@@ -9,15 +9,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "feedback")
 public class Feedback {
 	
 	@Id
-	@GeneratedValue
+//	@GeneratedValue
+	@GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name="system-uuid", strategy = "uuid")
 	private String feedbackId;
 	@ManyToOne
-	@JoinColumn(name = "student_id")
+	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	private String feedback;
 	private  int rating;
@@ -30,6 +34,9 @@ public class Feedback {
 				+ rating + ", submitDate=" + submitDate + "]";
 	}
 
+	
+	//Add a constructor with customer
+	
 	//constructor without customer
 	public Feedback(String feedbackId, String feedback, int rating, LocalDate submitDate) {
 		this.feedbackId = feedbackId;
@@ -38,7 +45,8 @@ public class Feedback {
 		this.submitDate = submitDate;
 	}
 	
-	//constructor without Customer and Id		:		remove later
+	//constructor without Customer and Id		:		since the id is auto generated and return for service object will be feedback id
+	// Add customer maybe
 	public Feedback(String feedback, int rating, LocalDate submitDate) {
 		this.feedback = feedback;
 		this.rating = rating;
