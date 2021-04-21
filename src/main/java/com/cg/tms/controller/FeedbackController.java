@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Feedback;
 import com.cg.tms.service.IFeedbackService;
 
@@ -32,6 +33,8 @@ public class FeedbackController {
 	public String addFeedback()
 	{
 		Feedback feed = new Feedback("yo","nice",4,LocalDate.now());
+		//Added exception handling if customer is not found
+		feed.setCustomer(new Customer(41));
 		fService.addFeedback(feed);
 		Feedback feeds = new Feedback("lol","perfect",5,LocalDate.now());
 		fService.addFeedback(feeds);

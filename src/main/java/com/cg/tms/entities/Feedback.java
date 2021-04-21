@@ -33,9 +33,6 @@ public class Feedback {
 		return "Feedback [feedbackId=" + feedbackId + ", feedback=" + feedback + ", rating="
 				+ rating + ", submitDate=" + submitDate + "]";
 	}
-
-	
-	//Add a constructor with customer
 	
 	//constructor without customer
 	public Feedback(String feedbackId, String feedback, int rating, LocalDate submitDate) {

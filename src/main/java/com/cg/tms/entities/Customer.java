@@ -104,6 +104,10 @@ public class Customer {
 		feedbacks.add(feedback);
 	}
 
+	public Customer(int customerId) {
+		this.customerId = customerId;
+	}
+
 
 	//toString with Feedback
 	@Override

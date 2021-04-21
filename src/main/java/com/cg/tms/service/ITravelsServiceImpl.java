@@ -11,14 +11,16 @@ import com.cg.tms.entities.Travels;
 import com.cg.tms.exceptions.TravelsNotFoundException;
 import com.cg.tms.repository.ITravelsRespository;
 
-
+@Service
+@Transactional
 public class ITravelsServiceImpl implements ITravelsService {
 
-	//create res object
+	@Autowired
+	private ITravelsRespository tRes;
 	
 	@Override
 	public Travels addTravels(Travels travels) {
-		// TODO Auto-generated method stub
+		Travels trav = tRes.save(travels);
 		return null;
 	}
 
