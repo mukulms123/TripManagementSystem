@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.tms.entities.Route;
+import com.cg.tms.entities.TicketDetails;
 import com.cg.tms.service.IRouteService;
 
 @RestController
@@ -33,6 +34,7 @@ public class RouteController {
 	public String addFeedback()
 	{
 		Route route = new Route("Delhi","Kanour",LocalDateTime.now(),LocalDateTime.now(),LocalDate.now(),"Raj",23.45);
+		route.addTicketDetails(new TicketDetails("Valid"));
 		//Added exception handling if customer is not found
 		rService.addRoute(route);
 		

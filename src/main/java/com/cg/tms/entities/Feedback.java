@@ -30,7 +30,7 @@ public class Feedback {
 	//toString without the Customer to avoid going to infinite loop
 	@Override
 	public String toString() {
-		return "Feedback [feedbackId=" + feedbackId + ", feedback=" + feedback + ", rating="
+		return "Feedback [feedback=" + feedback + ", rating="
 				+ rating + ", submitDate=" + submitDate + "]";
 	}
 	

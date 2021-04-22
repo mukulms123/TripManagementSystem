@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "package")
-public class Package {
+public class Package1 {
 	
 	@Id
 	@GeneratedValue
@@ -30,7 +30,7 @@ public class Package {
 	@JoinColumn(name = "hotel_id")
 	private Hotel hotel;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Booking booking;
 
 	//Getter and setter for Payment
@@ -52,14 +52,14 @@ public class Package {
 	}
 
 	//constructor without id
-	public Package(String packageName, String packageDescription, String packageType, double packageCost) {
+	public Package1(String packageName, String packageDescription, String packageType, double packageCost) {
 		this.packageName = packageName;
 		this.packageDescription = packageDescription;
 		this.packageType = packageType;
 		this.packageCost = packageCost;
 	}
 
-	public Package() {
+	public Package1() {
 	}
 
 	@Override

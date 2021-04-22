@@ -3,6 +3,9 @@ package TripManagementSystem;
 import java.util.List;
 
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
@@ -10,6 +13,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.cg.tms.entities.Booking;
 import com.cg.tms.exceptions.BookingNotFoundException;
+import com.cg.tms.repository.IBookingRepository;
+import com.cg.tms.repository.IPaymentDetailsRepository;
+import com.cg.tms.repository.ITicketDetailsRepository;
 import com.cg.tms.service.IBookingServiceImpl;
 
 @ExtendWith({SpringExtension.class})
@@ -18,6 +24,19 @@ import com.cg.tms.service.IBookingServiceImpl;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class IBookingServiceImplTest {
 
+	@Mock
+	IBookingRepository bRep;
+
+	@Mock
+	ITicketDetailsRepository tRep; 
+	
+	@Mock
+	IPaymentDetailsRepository pRep;
+	
+	@Spy
+	@InjectMocks
+	IBookingServiceImpl service;
+	
 	public  Booking  makeBooking(Booking booking){
 		return null;
 	}

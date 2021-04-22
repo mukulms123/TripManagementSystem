@@ -22,7 +22,7 @@ public class Hotel {
 	private String status;
 	
 	@OneToOne
-	private Package pack;
+	private Package1 pack;
 	
 	//Constructors with id and package(not added yet)
 	public Hotel(String hotelName, String hotelType, String hotelDescription, String address, double rent,
@@ -116,16 +116,16 @@ public class Hotel {
 	}
 
 	//Getters and Setters for package
-	public Package getPack() {
+	public Package1 getPack() {
 		return pack;
 	}
 
-	public void setPack(Package pack) {
+	public void setPack(Package1 pack) {
 		this.pack = pack;
 	}
 	
 	//addPackage method
-	public void addPackage(Package pack)
+	public void addPackage(Package1 pack)
 	{
 		pack.setHotel(this);
 		this.setPack(pack);

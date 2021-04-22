@@ -11,12 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "ticket_details")
 public class TicketDetails {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name="system-uuid", strategy = "uuid")
 	private String ticketId;
 	@OneToOne
 	@JoinColumn(name = "route_id")
@@ -24,7 +27,7 @@ public class TicketDetails {
 	private String status;
 	
 	@OneToOne
-	private Package pack;
+	private Package1 pack;
 	
 	//constructor without id and route
 	public TicketDetails(String status) {
@@ -74,16 +77,16 @@ public class TicketDetails {
 	}
 
 	//Getter and Setter for Package
-	public Package getPack() {
+	public Package1 getPack() {
 		return pack;
 	}
 
-	public void setPack(Package pack) {
+	public void setPack(Package1 pack) {
 		this.pack = pack;
 	}
 	
 	//addPackage method
-	public void addPackage(Package pack)
+	public void addPackage(Package1 pack)
 	{
 		pack.setTicket(this);
 		this.setPack(pack);

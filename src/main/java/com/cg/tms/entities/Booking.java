@@ -21,7 +21,7 @@ public class Booking {
 	private  LocalDate bookingDate;
 
 	@OneToOne
-	private Package pack;
+	private Package1 pack;
 	private  int userId;
 	public int getBookingId() {
 		return bookingId;
@@ -53,10 +53,10 @@ public class Booking {
 	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
-	public Package getPack() {
+	public Package1 getPack() {
 		return pack;
 	}
-	public void setPack(Package pack) {
+	public void setPack(Package1 pack) {
 		this.pack = pack;
 	}
 	public int getUserId() {
@@ -69,7 +69,6 @@ public class Booking {
 	}
 	
 	public Booking(String bookingType, String description, String bookingTitle, LocalDate bookingDate, int userId) {
-		super();
 		this.bookingType = bookingType;
 		this.description = description;
 		this.bookingTitle = bookingTitle;

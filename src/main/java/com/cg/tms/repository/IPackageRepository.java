@@ -3,9 +3,12 @@ package com.cg.tms.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.cg.tms.entities.Package;
+import org.springframework.stereotype.Repository;
 
-public interface IPackageRepository extends JpaRepository<Package, Integer>{
+import com.cg.tms.entities.Package1;
+
+@Repository
+public interface IPackageRepository extends JpaRepository<Package1, Integer>{
 	
 	
 //	public  Package  addPackage(Package pack);

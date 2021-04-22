@@ -10,7 +10,7 @@ import com.cg.tms.exceptions.FeedbackNotFoundException;
 public interface IFeedbackService {
 	
 		public Feedback  addFeedback(Feedback feed);
-		public Feedback   findByFeedbackId(int feedbackId) throws FeedbackNotFoundException;
+		public Feedback   findByFeedbackId(String feedbackId) throws FeedbackNotFoundException;
 		public Feedback   findByCustomerId(int customerId) throws CustomerNotFoundException;
 		public List<Feedback> viewAllFeedbacks();
 	

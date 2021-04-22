@@ -22,7 +22,7 @@ public class PaymentDetails {
 	private int userId;
 	
 	@OneToOne
-	private Package pack;
+	private Package1 pack;
 	
 	public PaymentDetails() {
 
@@ -118,16 +118,16 @@ public class PaymentDetails {
 	}
 
 	//Getter and Setter for package
-	public Package getPack() {
+	public Package1 getPack() {
 		return pack;
 	}
 
-	public void setPack(Package pack) {
+	public void setPack(Package1 pack) {
 		this.pack = pack;
 	}
 	
 	//add method for Package Details
-	public void addPackage(Package pack)
+	public void addPackage(Package1 pack)
 	{
 		pack.setPayment(this);
 		this.setPack(pack);

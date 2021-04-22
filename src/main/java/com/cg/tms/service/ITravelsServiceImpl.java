@@ -1,6 +1,7 @@
 package com.cg.tms.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -16,36 +17,50 @@ import com.cg.tms.repository.ITravelsRespository;
 public class ITravelsServiceImpl implements ITravelsService {
 
 	@Autowired
-	private ITravelsRespository tRes;
+	private ITravelsRespository tRep;
 	
 	@Override
 	public Travels addTravels(Travels travels) {
-		Travels trav = tRes.save(travels);
+		Travels trav = tRep.save(travels);
 		return null;
 	}
 
 	@Override
 	public Travels updateTravels(Travels travels) throws TravelsNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		boolean check = tRep.existsById(travels.getTravelsId());
+		if(!check)
+		{	//add argument while Exception handling
+			throw new TravelsNotFoundException();
+		}
+		Travels trav = tRep.save(travels);
+		return trav;
 	}
 
 	@Override
 	public Travels removeTravels(int travelsId) throws TravelsNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Travels> opt = tRep.findById(travelsId);
+        if (!opt.isPresent()) {
+        	throw new TravelsNotFoundException();
+        }
+        Travels trav = opt.get();
+        tRep.delete(trav);
+		return trav;
 	}
 
 	@Override
 	public Travels searchTravels(int travelsId) throws TravelsNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Travels> opt = tRep.findById(travelsId);
+        if (!opt.isPresent()) {
+        	throw new TravelsNotFoundException();	
+        }
+        Travels trav = opt.get();
+        return trav;
 	}
 
 	@Override
 	public List<Travels> viewTravels() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Travels> viewAll=tRep.findAll();
+		return viewAll;
 	}
 
 }

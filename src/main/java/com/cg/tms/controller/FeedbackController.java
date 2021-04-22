@@ -26,18 +26,12 @@ public class FeedbackController {
 	public String feedbackGreet()
 	{
 		System.out.println("Greeting!!");
-		return "Hello from feedback";		
+		return "Hello from feedback!!";		
 	}
 	
 	@GetMapping("/add")
 	public String addFeedback()
 	{
-		Feedback feed = new Feedback("yo","nice",4,LocalDate.now());
-		//Added exception handling if customer is not found
-		feed.setCustomer(new Customer(41));
-		fService.addFeedback(feed);
-		Feedback feeds = new Feedback("lol","perfect",5,LocalDate.now());
-		fService.addFeedback(feeds);
 		
 		return "Done";
 		

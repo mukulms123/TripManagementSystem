@@ -1,6 +1,7 @@
 package com.cg.tms.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -11,31 +12,39 @@ import com.cg.tms.entities.Booking;
 import com.cg.tms.exceptions.BookingNotFoundException;
 import com.cg.tms.repository.IBookingRepository;
 
+@Service
+@Transactional
 public class IBookingServiceImpl implements IBookingService {
 
-	//create res object
+	@Autowired
+	private IBookingRepository bRep;
 	
 	@Override
 	public Booking makeBooking(Booking booking) {
-		// TODO Auto-generated method stub
+		Booking book = bRep.save(booking);
 		return null;
 	}
 
 	@Override
 	public Booking cancelBooking(int bookingId) throws BookingNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Booking book = viewBooking(bookingId);
+		bRep.delete(book);
+		return book;
 	}
 
 	@Override
 	public Booking viewBooking(int bookingId) throws BookingNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Booking> opt = bRep.findById(bookingId);
+		if(!opt.isPresent()){
+			throw new BookingNotFoundException();
+		}
+		Booking book = opt.get();
+		return book;
 	}
 
 	@Override
 	public List<Booking> viewAllBookings() {
-		// TODO Auto-generated method stub
+		List<Booking> bookings = bRep.findAll();
 		return null;
 	}
 
