@@ -11,12 +11,14 @@ import org.springframework.stereotype.Service;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Package1;
 import com.cg.tms.entities.Route;
+import com.cg.tms.entities.User;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.exceptions.PackageNotFoundException;
 import com.cg.tms.exceptions.RouteNotFoundException;
 import com.cg.tms.repository.ICustomerRepository;
 import com.cg.tms.repository.IPackageRepository;
 import com.cg.tms.repository.IRouteRepository;
+import com.cg.tms.repository.IUserRepository;
 
 @Service
 @Transactional
@@ -31,9 +33,15 @@ public class ICustomerServiceImpl implements ICustomerService{
 	@Autowired
 	private IPackageRepository pRep;
 	
+	@Autowired
+	private IUserRepository uRep;
+	
 	@Override
 	public Customer addCustomer(Customer customer) {
 		Customer cust = cRep.save(customer);
+		User user = new User();
+		user.addCustomer(cust);
+		User newUser = uRep.save(user);
         return cust;
 	}
 
@@ -73,17 +81,15 @@ public class ICustomerServiceImpl implements ICustomerService{
 	}
 
 	@Override
-	public List<Customer> viewAllCustomers(int packageId) throws PackageNotFoundException {
-		Optional<Package1> opt = pRep.findById(packageId);
-        if (!opt.isPresent()) {
-            throw new PackageNotFoundException();
-        }
-        Package1 pack = opt.get();
-        System.out.println("id:"+pack.getPackageId());
-        List<Integer> ids = cRep.findByPack(pack.getPackageId());
-        System.out.println(ids);
-        List<Customer>customers= cRep.findAllById(ids);
-        return null;
+	public List<Customer> viewAllCustomers(int packId) throws PackageNotFoundException {
+		 Optional<Package1> optionalPack = pRep.findById(packId);
+	        if (!optionalPack.isPresent()) {
+	            throw new PackageNotFoundException();
+	        }
+	        Package1 pack = optionalPack.get();
+	        List<Integer> ids = cRep.findByPack(packId);
+	        //List<Customer>customers=cRep.findAllById(ids);
+	        return null;
 	}
 
 //	@Override

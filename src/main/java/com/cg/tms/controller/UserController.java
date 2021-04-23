@@ -1,9 +1,73 @@
 package com.cg.tms.controller;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.tms.dto.UserDetails;
+import com.cg.tms.dto.UserRequest;
+import com.cg.tms.entities.Customer;
+import com.cg.tms.entities.User;
+import com.cg.tms.exceptions.CustomerNotFoundException;
+import com.cg.tms.service.IUserService;
+import com.cg.tms.util.UserUtil;
+
+@RestController
+@RequestMapping("/user")
+@Validated
 public class UserController {
 
+	@Autowired 
+	private IUserService uService;
+	
+	@Autowired 
+	private UserUtil userUtil;
+	
+	@RequestMapping("/hello")
+	public String greet() {
+		System.out.println("Greeting!!");
+		return "Hello!!";
+	}
+	
+	@ResponseStatus(code = HttpStatus.OK)
+	@PostMapping("/signin")
+	public String userSignIn(@RequestBody @Valid UserRequest requestData) throws CustomerNotFoundException
+	{
+		System.out.println("Signing In");
+		System.out.println("req Data:"+requestData);
+		User user = new User(requestData.getUserType(),requestData.getPassword());
+		User newUser = uService.signIn(user);
+		return "Welcome,"+newUser.getUserId();
+	}
+	
+	@ResponseStatus(code = HttpStatus.OK)
+	@PostMapping("/add")
+	public UserDetails userAdd(@RequestBody @Valid UserRequest requestData)
+	{
+		System.out.println("Adding User");
+		System.out.println("req Data:"+requestData);
+		User user = new User(requestData.getUserId(),requestData.getUserType(),requestData.getPassword());
+		user.setCustomer(requestData.getCustomer());
+		User newUser = uService.addNewUser(user);
+		UserDetails userDetails = userUtil.toDetailsUser(newUser);
+		return userDetails;
+	}
+	
+	@ResponseStatus(code = HttpStatus.OK)
+	@PostMapping("/signout")
+	public void userSignOut(@RequestBody @Valid UserRequest requestData) 
+	{
+		User user = new User(requestData.getUserId(),requestData.getUserType(),requestData.getPassword());
+		user.setCustomer(requestData.getCustomer());
+		String logout = uService.signOut(user);
+		System.out.println(logout);
+		System.exit(0);		
+	}
 }

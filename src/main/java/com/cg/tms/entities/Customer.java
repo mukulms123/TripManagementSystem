@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,16 +19,18 @@ public class Customer {
 	@GeneratedValue
 	private int customerId;
 	private String customerName;
-	private String  customerPassword;
+	private String customerPassword;
 	private String address;
 	private String mobileNo;
 	private String email;
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private Set<Feedback> feedbacks = new HashSet<>();
-	
-	//Parameterized constructor without feedback and Id
-	public Customer(String customerName, String customerPassword, String address, String mobileNo,
-			String email) {
+
+	@OneToOne
+	private User user;
+
+	// Parameterized constructor without feedback and Id
+	public Customer(String customerName, String customerPassword, String address, String mobileNo, String email) {
 		this.customerName = customerName;
 		this.customerPassword = customerPassword;
 		this.address = address;
@@ -35,12 +38,11 @@ public class Customer {
 		this.email = email;
 	}
 
-
-	//default constructor
+	// default constructor
 	public Customer() {
 	}
 
-	//Getters and Setters
+	// Getters and Setters
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -88,18 +90,16 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public Set<Feedback> getFeedback() {
 		return feedbacks;
 	}
 
-
 	public void setFeedback(Set<Feedback> feedback) {
 		this.feedbacks = feedback;
 	}
-	
-	public void addFeedback(Feedback feedback)
-	{
+
+	public void addFeedback(Feedback feedback) {
 		feedback.setCustomer(this);
 		feedbacks.add(feedback);
 	}
@@ -108,24 +108,29 @@ public class Customer {
 		this.customerId = customerId;
 	}
 
+	public Set<Feedback> getFeedbacks() {
+		return feedbacks;
+	}
 
-	//toString with Feedback
+	public void setFeedbacks(Set<Feedback> feedbacks) {
+		this.feedbacks = feedbacks;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	// toString with Feedback
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerPassword="
 				+ customerPassword + ", address=" + address + ", mobileNo=" + mobileNo + ", email=" + email
 				+ ", feedback=" + feedbacks + "]";
 	}
-
 	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

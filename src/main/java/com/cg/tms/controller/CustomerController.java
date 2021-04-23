@@ -28,6 +28,7 @@ import com.cg.tms.dto.deleteCustomerRequest;
 import com.cg.tms.dto.updateCustomerRequest;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Feedback;
+import com.cg.tms.entities.User;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.exceptions.PackageNotFoundException;
 import com.cg.tms.service.ICustomerService;
@@ -55,17 +56,20 @@ public class CustomerController {
 	public CustomerDetails addCustomer(@RequestBody @Valid createCustomerRequest requestData) {
 		System.out.println("Adding Customer ");
 		System.out.println("req data: " + requestData);
-		Customer newCustomer = cService.addCustomer(new Customer(requestData.getCustomerName(),requestData.getCustomerPassword(),requestData.getAddress(),requestData.getMobileNo(),requestData.getEmail()));
+		Customer newCustomer = new Customer(requestData.getCustomerName(),requestData.getCustomerPassword(),
+											requestData.getAddress(),requestData.getMobileNo(),
+											requestData.getEmail());
 		Set<Feedback> feedbackSet = requestData.getFeedbacks();
 		if(feedbackSet!=null) {
 			for (Feedback feed : feedbackSet) {
 				newCustomer.addFeedback(feed);
 			}
-		}
+		}		
 		System.out.println("Customer came: " + newCustomer);
 		Customer newCust = cService.addCustomer(newCustomer);
 		CustomerDetails customerDetails = customerUtil.toDetailsCustomer(newCust);
 		return customerDetails;
+		
 		
 	}
 	
@@ -109,8 +113,8 @@ public class CustomerController {
 	}
 	
 	@ResponseStatus(code = HttpStatus.OK)
-	@GetMapping("/view/all/{packId}")
-	public List<CustomerDetails> ViewAllCustomers(@PathVariable("packId") int packId) throws PackageNotFoundException
+	@GetMapping("/view/all/{id}")
+	public List<CustomerDetails> ViewAllCustomers(@PathVariable("id") int packId) throws PackageNotFoundException
 	{
 		System.out.println("Viewing Customer by Package ");
 		System.out.println("Package Id:"+packId);

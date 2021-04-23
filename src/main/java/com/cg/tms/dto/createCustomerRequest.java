@@ -21,6 +21,7 @@ public class createCustomerRequest {
 	@NotBlank
 	private String email;
 	private Set<Feedback> feedbacks;
+	private int customerId;
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -57,7 +58,12 @@ public class createCustomerRequest {
 	public void setFeedbacks(Set<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
 	}
-	
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
 	//Default Constructor
 	public createCustomerRequest() {
 	}

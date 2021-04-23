@@ -20,7 +20,7 @@ public class Booking {
 	private String description;
 	private String bookingTitle;
 	private  LocalDate bookingDate;
-	private int packageId;
+	private int packId;
 
 	@OneToOne
 	private Package1 pack;
@@ -83,14 +83,11 @@ public class Booking {
 		return "Booking [bookingId=" + bookingId + ", bookingType=" + bookingType + ", description=" + description
 				+ ", bookingTitle=" + bookingTitle + ", bookingDate=" + bookingDate + ", userId=" + userId + "]\n";
 	}
-	public int getPackageId() {
-		return packageId;
+	public int getPackId() {
+		return packId;
 	}
-	public void setPackageId(int packageId) {
-		this.packageId = packageId;
-	}
-	public void setPackageId() {
-		this.packageId = pack.getPackageId();
+	public void setPackId(int id) {
+		this.packId = packId;
 	}
 	
 
