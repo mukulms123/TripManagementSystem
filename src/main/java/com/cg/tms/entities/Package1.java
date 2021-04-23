@@ -140,5 +140,11 @@ public class Package1 {
 		hot.setPack(this);
 		this.setHotel(hot);
 	}
+
+	public Package1(int packageId) {
+		this.packageId = packageId;
+	}
+	
+	
 	
 }

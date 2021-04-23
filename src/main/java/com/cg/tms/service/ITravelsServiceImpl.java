@@ -22,7 +22,7 @@ public class ITravelsServiceImpl implements ITravelsService {
 	@Override
 	public Travels addTravels(Travels travels) {
 		Travels trav = tRep.save(travels);
-		return null;
+		return trav;
 	}
 
 	@Override

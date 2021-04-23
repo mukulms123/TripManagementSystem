@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,6 +20,7 @@ public class Booking {
 	private String description;
 	private String bookingTitle;
 	private  LocalDate bookingDate;
+	private int packageId;
 
 	@OneToOne
 	private Package1 pack;
@@ -81,9 +83,15 @@ public class Booking {
 		return "Booking [bookingId=" + bookingId + ", bookingType=" + bookingType + ", description=" + description
 				+ ", bookingTitle=" + bookingTitle + ", bookingDate=" + bookingDate + ", userId=" + userId + "]\n";
 	}
-	
-	
-	
+	public int getPackageId() {
+		return packageId;
+	}
+	public void setPackageId(int packageId) {
+		this.packageId = packageId;
+	}
+	public void setPackageId() {
+		this.packageId = pack.getPackageId();
+	}
 	
 
 }

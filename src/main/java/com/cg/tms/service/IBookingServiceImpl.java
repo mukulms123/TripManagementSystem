@@ -22,7 +22,7 @@ public class IBookingServiceImpl implements IBookingService {
 	@Override
 	public Booking makeBooking(Booking booking) {
 		Booking book = bRep.save(booking);
-		return null;
+		return book;
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class IBookingServiceImpl implements IBookingService {
 	@Override
 	public List<Booking> viewAllBookings() {
 		List<Booking> bookings = bRep.findAll();
-		return null;
+		return bookings;
 	}
 
 }

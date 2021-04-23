@@ -23,12 +23,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.tms.dto.BookingRequest;
+import com.cg.tms.dto.RouteDetails;
 import com.cg.tms.dto.RouteRequest;
 import com.cg.tms.entities.Booking;
 import com.cg.tms.entities.Route;
 import com.cg.tms.entities.TicketDetails;
 import com.cg.tms.exceptions.RouteNotFoundException;
 import com.cg.tms.service.IRouteService;
+import com.cg.tms.util.RouteUtil;
 
 @RestController
 @RequestMapping("/route")
@@ -37,6 +39,9 @@ public class RouteController {
 	
 	@Autowired
 	private IRouteService rService;
+	
+	@Autowired
+	private RouteUtil routeUtil;
 	
 	@RequestMapping("/hello")
 	public String feedbackGreet()
@@ -47,62 +52,59 @@ public class RouteController {
 	
 	@ResponseStatus(code = HttpStatus.OK)
 	@PostMapping("/add")
-	public String addRoute(@RequestBody @Valid RouteRequest requestData)
+	public RouteDetails addRoute(@RequestBody @Valid RouteRequest requestData)
 	{
 		System.out.println("Adding Route ");
 		System.out.println("req data: " + requestData);
 		Route rout = new Route(requestData.getRouteFrom(),requestData.getRouteTo(),requestData.getDepartureTime(),requestData.getArrivalTime(),requestData.getDoj(),requestData.getPickupPoint(),requestData.getFare());
 		Route route = rService.addRoute(rout);
-		System.out.println(route);
-		return "Done";
+		RouteDetails routeDetails = routeUtil.toRouteDetail(route);
+		return routeDetails;
 	}
 	
 	@ResponseStatus(code = HttpStatus.OK)
 	@PutMapping("/update/{id}")
-	public String updateRoute(@RequestBody @Valid RouteRequest requestData,@PathVariable("id") @Min(1) Integer routeId)
+	public RouteDetails updateRoute(@RequestBody @Valid RouteRequest requestData,@PathVariable("id") @Min(1) Integer routeId)
 	{
 		System.out.println("Update Route ");
 		System.out.println("req data: " + requestData);
 		Route rout = new Route(requestData.getRouteFrom(),requestData.getRouteTo(),requestData.getDepartureTime(),requestData.getArrivalTime(),requestData.getDoj(),requestData.getPickupPoint(),requestData.getFare());
 		rout.setRouteId(routeId);
 		Route route = rService.addRoute(rout);
-		
-		return "Done";
+		RouteDetails routeDetails = routeUtil.toRouteDetail(route);
+		return routeDetails;
 	}
 	
 	@ResponseStatus(code = HttpStatus.OK)
 	@DeleteMapping("/delete/{id}")
-	public String deleteRoute(@PathVariable("id") @Min(1) Integer routeId) throws RouteNotFoundException
+	public RouteDetails deleteRoute(@PathVariable("id") @Min(1) Integer routeId) throws RouteNotFoundException
 	{
 		System.out.println("deleting Route");
 		System.out.println("Route id: " + routeId);
 		Route route = rService.removeRoute(routeId);
-		System.out.println(route);
-		
-		return "Done";
+		RouteDetails routeDetails = routeUtil.toRouteDetail(route);
+		return routeDetails;
 	}
 	
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/{id}")
-	public String searchRoute(@PathVariable("id") @Min(1) Integer routeId) throws RouteNotFoundException
+	public RouteDetails searchRoute(@PathVariable("id") @Min(1) Integer routeId) throws RouteNotFoundException
 	{
 		System.out.println("View Route");
 		System.out.println("Route id: " + routeId);
 		Route route = rService.searchRoute(routeId);
-		System.out.println(route);
-		
-		return "Done";
+		RouteDetails routeDetails = routeUtil.toRouteDetail(route);
+		return routeDetails;
 	}
 	
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/all")
-	public String viewRouteList() 
+	public List<RouteDetails> viewRouteList() 
 	{
 		System.out.println("View All Routes");
 		List<Route> routes = rService.viewRouteList();
-		System.out.println(routes);
-		
-		return "Done";
+		List<RouteDetails> routeDetails = routeUtil.toRouteDetail(routes);
+		return routeDetails;
 	}
 	
 	

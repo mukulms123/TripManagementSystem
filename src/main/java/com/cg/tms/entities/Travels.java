@@ -3,6 +3,7 @@ package com.cg.tms.entities;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 public class Travels {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int travelsId;
 	private String travelsName;
 	private String  agentName;

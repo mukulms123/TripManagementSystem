@@ -33,7 +33,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 	
 	@Override
 	public Customer addCustomer(Customer customer) {
-        Customer cust = cRep.save(customer);
+		Customer cust = cRep.save(customer);
         return cust;
 	}
 
@@ -72,17 +72,19 @@ public class ICustomerServiceImpl implements ICustomerService{
 		return cust;
 	}
 
-//	@Override
-//	public List<Customer> viewAllCustomers(int packageId) throws PackageNotFoundException {
-//		Optional<Package1> opt = pRep.findById(packageId);
-//        if (!opt.isPresent()) {
-//            throw new PackageNotFoundException();
-//        }
-//        Package1 pack = opt.get();
-//        List<Integer> ids = cRep.findByPack(pack);
-//        List<Customer>customers= cRep.findAllById(ids);
-//        return customers;
-//	}
+	@Override
+	public List<Customer> viewAllCustomers(int packageId) throws PackageNotFoundException {
+		Optional<Package1> opt = pRep.findById(packageId);
+        if (!opt.isPresent()) {
+            throw new PackageNotFoundException();
+        }
+        Package1 pack = opt.get();
+        System.out.println("id:"+pack.getPackageId());
+        List<Integer> ids = cRep.findByPack(pack.getPackageId());
+        System.out.println(ids);
+        List<Customer>customers= cRep.findAllById(ids);
+        return null;
+	}
 
 //	@Override
 //	public List<Customer> viewCustomerList(String routeId) throws RouteNotFoundException {
@@ -97,18 +99,12 @@ public class ICustomerServiceImpl implements ICustomerService{
 //		return null;
 //	}
 
-	@Override
-	public List<Customer> viewAllCustomers(int packageId) throws PackageNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Customer> viewCustomerList(String routeId) throws RouteNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 	
 	//to validate the 
 

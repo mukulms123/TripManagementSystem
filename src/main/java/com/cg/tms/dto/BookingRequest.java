@@ -3,19 +3,21 @@ package com.cg.tms.dto;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class BookingRequest {
 
-	@NotBlank @Size(min = 2, max = 50)
+	@NotNull @Size(min = 2, max = 50)
 	private String bookingType;
-	@NotBlank @Size(min = 2, max = 50)
+	@NotNull @Size(min = 2, max = 50)
 	private String description;
-	@NotBlank @Size(min = 2, max = 50)
+	@NotNull @Size(min = 2, max = 50)
 	private String bookingTitle;
-	@NotBlank @Size(min = 2, max = 50)
+	@NotNull
 	private  LocalDate bookingDate;
 	private  int userId;
+	private int packageId;
 	
 	public String getBookingType() {
 		return bookingType;
@@ -58,6 +60,15 @@ public class BookingRequest {
 
 	public String getBookingId() {
 		return bookingId;
+	}
+	public int getPackageId() {
+		return packageId;
+	}
+	public void setPackageId(int packageId) {
+		this.packageId = packageId;
+	}
+	public void setBookingId(String bookingId) {
+		this.bookingId = bookingId;
 	}
 	
 		

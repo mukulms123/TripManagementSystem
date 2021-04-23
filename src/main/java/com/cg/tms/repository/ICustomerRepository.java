@@ -16,6 +16,9 @@ import com.cg.tms.exceptions.RouteNotFoundException;
 
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
+
+//	@Query("")
+//	List<Integer> findByPack(@Param("pack") Package1 pack);
 	
 //	public Customer addCustomer(Customer customer);
 //	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException;
@@ -27,6 +30,6 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
 //	@Query("select booking.user_id from Booking booking join booking.ticket tick  where tick.route_id=:route")
 //    List<Integer> findByRoute(@Param("route")Route route);
 	
-//	@Query("select booking.user_id from Booking booking where booking.pack=:pack")
-//    List<Integer> findByPack(@Param("pack")Package1 pack);
+	@Query("select userId from Booking where packageId = :packId ")
+    List<Integer> findByPack(@Param("packId") int pack);
 }

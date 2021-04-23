@@ -1,13 +1,19 @@
 package com.cg.tms.dto;
 
+import javax.validation.constraints.NotNull;
+
 import com.cg.tms.entities.Bus;
 
 public class TravelRequest {
 
 	private int travelsId;
+	@NotNull
 	private String travelsName;
+	@NotNull
 	private String  agentName;
+	@NotNull
 	private String  address;
+	@NotNull
 	private String  contact;
 	
 	private Bus bus;

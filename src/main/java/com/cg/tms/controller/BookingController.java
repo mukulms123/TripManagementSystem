@@ -18,12 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.tms.dto.BookingDetails;
 import com.cg.tms.dto.BookingRequest;
 import com.cg.tms.entities.Booking;
 import com.cg.tms.entities.Customer;
+import com.cg.tms.entities.Package1;
 import com.cg.tms.exceptions.BookingNotFoundException;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.service.IBookingService;
+import com.cg.tms.util.BookingUtil;
 
 @RestController
 @RequestMapping("/booking")
@@ -33,6 +36,9 @@ public class BookingController {
 	@Autowired
 	private IBookingService bService;
 	
+	@Autowired
+	private BookingUtil bookingUtil;
+	
 	@RequestMapping("/hello")
 	public String feedbackGreet()
 	{
@@ -41,47 +47,70 @@ public class BookingController {
 	}
 	
 	@ResponseStatus(code = HttpStatus.OK)
-	@PostMapping("/add")
-	public String addBooking(@RequestBody @Valid BookingRequest requestData)
+	@PostMapping("/add/{id}")
+	public BookingDetails addBooking(@RequestBody @Valid BookingRequest requestData,@PathVariable("id") @Min(1) int id)
 	{
 		System.out.println("Adding Booking ");
 		System.out.println("req data: " + requestData);
-		Booking booking = bService.makeBooking(new Booking(requestData.getBookingType(),requestData.getDescription(),requestData.getBookingTitle(),requestData.getBookingDate(),requestData.getUserId()));
-		
-		return "Done";
+		System.out.println("Id:"+id);
+		Booking book = new Booking(requestData.getBookingType(),requestData.getDescription(),requestData.getBookingTitle(),requestData.getBookingDate(),requestData.getUserId());
+		book.setUserId(id);
+		Package1 pack = new Package1(requestData.getPackageId());
+		book.setPackageId(pack.getPackageId());
+		Booking booking = bService.makeBooking(book);
+		BookingDetails bookingDetails = bookingUtil.toDetailsBooking(booking);
+		return bookingDetails;
 	}
-	
 	
 	
 	@ResponseStatus(code = HttpStatus.OK)
 	@DeleteMapping("/delete/{id}")
-	public String cancelBooking(@PathVariable("id") @Min(1) int id) throws BookingNotFoundException
+	public BookingDetails cancelBooking(@PathVariable("id") @Min(1) int id) throws BookingNotFoundException
 	{
 		System.out.println("Delete Booking ");
 		System.out.println("Booking id: " + id);
 		Booking booking = bService.cancelBooking(id);
-		return "Done";
+		BookingDetails bookingDetails = bookingUtil.toDetailsBooking(booking);
+		return bookingDetails;
 		
 	}
 	
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/{id}")
-	public String viewBooking(@PathVariable("id") @Min(1) int bookingId) throws BookingNotFoundException
+	public BookingDetails viewBooking(@PathVariable("id") @Min(1) int bookingId) throws BookingNotFoundException
 	{
 		System.out.println("View Booking ");
 		System.out.println("Booking Id:"+bookingId);
 		Booking book = bService.viewBooking(bookingId);
-		System.out.println(book);
-		return null;
+		BookingDetails bookingDetails = bookingUtil.toDetailsBooking(book);
+		return bookingDetails;
 	}
 	
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/all")
-	public String viewBooking() 
+	public List<BookingDetails> viewBooking() 
 	{
 		System.out.println("View All Booking ");
 		List<Booking> bookings = bService.viewAllBookings();
 		System.out.println(bookings.toString());
-		return null;
+		List<BookingDetails> bookingDetails = bookingUtil.toDetailsBooking(bookings);
+		return bookingDetails;
+	}
+	
+	@ResponseStatus(code = HttpStatus.OK)
+	@PostMapping("/add/{id}/{packId}")
+	public BookingDetails addBooking(@RequestBody @Valid BookingRequest requestData,@PathVariable("id") @Min(1) int id,@PathVariable("packId") @Min(1) int packId)
+	{
+		System.out.println("Adding Booking ");
+		System.out.println("req data: " + requestData);
+		System.out.println("Id:"+id);
+		System.out.println("Pack Id:"+packId);
+		Booking book = new Booking(requestData.getBookingType(),requestData.getDescription(),requestData.getBookingTitle(),requestData.getBookingDate(),requestData.getUserId());
+		book.setUserId(id);
+		book.setPack(new Package1(packId));
+		
+		Booking booking = bService.makeBooking(book);
+		BookingDetails bookingDetails = bookingUtil.toDetailsBooking(booking);
+		return bookingDetails;
 	}
 }
