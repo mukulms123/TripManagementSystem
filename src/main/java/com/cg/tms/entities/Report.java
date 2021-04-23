@@ -58,6 +58,11 @@ public class Report {
 	public void setReportType(String reportType) {
 		this.reportType = reportType;
 	}
+
+	@Override
+	public String toString() {
+		return "Report [reportId=" + reportId + ", reportName=" + reportName + ", reportType=" + reportType + "]\n";
+	}
 	
 	//Generate Getters and Setters for admin
 	

@@ -33,7 +33,7 @@ public class IRouteServiceImplTest {
 	@Test 
 	public void addRoute()
 	{
-		String routeId = "R1";
+		int routeId = 78;
 		String routeFrom = "Jaipur";
 		String routeTo = "Delhi";
 		double fare = 600;
@@ -51,7 +51,7 @@ public class IRouteServiceImplTest {
 	@Test
 	public void updateRoute() throws RouteNotFoundException
 	{
-		String routeId = "R1";
+		int routeId = 67;
 		String routeFrom = "Delhi";
 		String routeTo = "Himachal";
 		double fare = 600;

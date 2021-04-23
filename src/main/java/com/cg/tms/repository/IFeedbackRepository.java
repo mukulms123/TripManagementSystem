@@ -8,7 +8,7 @@ import com.cg.tms.entities.Feedback;
 
 
 @Repository
-public interface IFeedbackRepository extends JpaRepository<Feedback, String>{
+public interface IFeedbackRepository extends JpaRepository<Feedback, Integer>{
 
 		Feedback findFeedbackByCustomer(Customer customer);
 	

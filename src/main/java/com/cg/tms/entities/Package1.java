@@ -26,8 +26,7 @@ public class Package1 {
 	@OneToOne
 	@JoinColumn(name = "ticket_id")
 	private TicketDetails ticket;
-	@OneToOne
-	@JoinColumn(name = "hotel_id")
+	@OneToOne(cascade=CascadeType.ALL)
 	private Hotel hotel;
 	
 	@OneToOne(cascade=CascadeType.ALL)
@@ -133,6 +132,13 @@ public class Package1 {
 	{
 		booking.setPack(this);
 		this.setBooking(booking);
+	}
+	
+	//To add Hotel method
+	public void addHotel(Hotel hot)
+	{
+		hot.setPack(this);
+		this.setHotel(hot);
 	}
 	
 }

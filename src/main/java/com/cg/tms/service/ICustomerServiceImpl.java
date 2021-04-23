@@ -72,28 +72,40 @@ public class ICustomerServiceImpl implements ICustomerService{
 		return cust;
 	}
 
+//	@Override
+//	public List<Customer> viewAllCustomers(int packageId) throws PackageNotFoundException {
+//		Optional<Package1> opt = pRep.findById(packageId);
+//        if (!opt.isPresent()) {
+//            throw new PackageNotFoundException();
+//        }
+//        Package1 pack = opt.get();
+//        List<Integer> ids = cRep.findByPack(pack);
+//        List<Customer>customers= cRep.findAllById(ids);
+//        return customers;
+//	}
+
+//	@Override
+//	public List<Customer> viewCustomerList(String routeId) throws RouteNotFoundException {
+//		Optional<Route> opt = rRep.findById(routeId);
+//		if(!opt.isPresent())
+//		{
+//			throw new RouteNotFoundException();
+//		}
+//		Route route = opt.get();
+//		List<Integer> ids = cRep.findByRoute(route);
+//		List<Customer> customers = cRep.findAllById(ids);
+//		return null;
+//	}
+
 	@Override
 	public List<Customer> viewAllCustomers(int packageId) throws PackageNotFoundException {
-		Optional<Package1> opt = pRep.findById(packageId);
-        if (!opt.isPresent()) {
-            throw new PackageNotFoundException();
-        }
-        Package1 pack = opt.get();
-        List<Integer> ids = cRep.findByPack(pack);
-        List<Customer>customers= cRep.findAllById(ids);
-        return customers;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<Customer> viewCustomerList(String routeId) throws RouteNotFoundException {
-		Optional<Route> opt = rRep.findById(routeId);
-		if(!opt.isPresent())
-		{
-			throw new RouteNotFoundException();
-		}
-		Route route = opt.get();
-		List<Integer> ids = cRep.findByRoute(route);
-		List<Customer> customers = cRep.findAllById(ids);
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

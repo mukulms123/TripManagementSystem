@@ -16,10 +16,8 @@ import org.hibernate.annotations.GenericGenerator;
 public class Feedback {
 	
 	@Id
-//	@GeneratedValue
-	@GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="system-uuid", strategy = "uuid")
-	private String feedbackId;
+	@GeneratedValue
+	private int feedbackId;
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
@@ -35,7 +33,7 @@ public class Feedback {
 	}
 	
 	//constructor without customer
-	public Feedback(String feedbackId, String feedback, int rating, LocalDate submitDate) {
+	public Feedback(int feedbackId, String feedback, int rating, LocalDate submitDate) {
 		this.feedbackId = feedbackId;
 		this.feedback = feedback;
 		this.rating = rating;
@@ -53,11 +51,11 @@ public class Feedback {
 	public Feedback() {
 	}
 
-	public String getFeedbackId() {
+	public int getFeedbackId() {
 		return feedbackId;
 	}
 
-	public void setFeedbackId(String feedbackId) {
+	public void setFeedbackId(int feedbackId) {
 		this.feedbackId = feedbackId;
 	}
 

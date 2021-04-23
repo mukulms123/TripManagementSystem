@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.cg.tms.entities.Route;
 
 @Repository
-public interface IRouteRepository extends JpaRepository<Route, String>{
+public interface IRouteRepository extends JpaRepository<Route, Integer>{
 	
 	
 //	public  Route  addRoute(Route route);

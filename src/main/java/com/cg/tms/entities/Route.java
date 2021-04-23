@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -20,9 +21,8 @@ import org.hibernate.annotations.GenericGenerator;
 public class Route {
 	
 	@Id
-	@GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="system-uuid", strategy = "uuid")
-	private String routeId;
+	@GeneratedValue
+	private int routeId;
 	private String  routeFrom;
 	private String  routeTo;
 	
@@ -61,7 +61,7 @@ public class Route {
 	}
 
 	//constructor without bus
-	public Route(String routeId, String routeFrom, String routeTo, LocalDateTime departureTime,
+	public Route(int routeId, String routeFrom, String routeTo, LocalDateTime departureTime,
 			LocalDateTime arrivalTime, LocalDate doj, String pickupPoint, double fare) {
 		super();
 		this.routeId = routeId;
@@ -75,11 +75,11 @@ public class Route {
 	}
 
 	//Getters and Setters
-	public String getRouteId() {
+	public int getRouteId() {
 		return routeId;
 	}
 
-	public void setRouteId(String routeId) {
+	public void setRouteId(@Min(1) int routeId) {
 		this.routeId = routeId;
 	}
 

@@ -32,7 +32,7 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 	}
 
 	@Override
-	public Feedback findByFeedbackId(String feedbackId) throws FeedbackNotFoundException {
+	public Feedback findByFeedbackId(int feedbackId) throws FeedbackNotFoundException {
 		Optional<Feedback> optional = fRep.findById(feedbackId);
         if (!optional.isPresent()) {
             throw new FeedbackNotFoundException();

@@ -79,46 +79,46 @@ public class ICustomerServiceImplTest {
 		Assertions.assertSame(result, customer);
 	}
 
-	@Test
-	public void viewAllCustomers()throws PackageNotFoundException {
-		int packageId=1;
-		List<Integer>customers=mock(List.class);
-		List<Customer>fetchedCustomer=mock(List.class);
-		Customer customer=mock(Customer.class);
-		Package1 pack =mock(Package1.class);
-		Optional<Customer>optional=Optional.of(customer);
-		Optional<Package1>optional1=Optional.of(pack);
-		when(packageRepository.findById(packageId)).thenReturn(optional1);
-		when(customerRepository.findByPack(pack)).thenReturn(customers);
-		when(customerRepository.findAllById(customers)).thenReturn(fetchedCustomer);
-		List<Customer>result=customerService.viewAllCustomers(packageId);
-		Assertions.assertNotNull(result);
-		Assertions.assertSame(result, fetchedCustomer);
-	}
+//	@Test
+//	public void viewAllCustomers()throws PackageNotFoundException {
+//		int packageId=1;
+//		List<Integer>customers=mock(List.class);
+//		List<Customer>fetchedCustomer=mock(List.class);
+//		Customer customer=mock(Customer.class);
+//		Package1 pack =mock(Package1.class);
+//		Optional<Customer>optional=Optional.of(customer);
+//		Optional<Package1>optional1=Optional.of(pack);
+//		when(packageRepository.findById(packageId)).thenReturn(optional1);
+//		when(customerRepository.findByPack(pack)).thenReturn(customers);
+//		when(customerRepository.findAllById(customers)).thenReturn(fetchedCustomer);
+//		List<Customer>result=customerService.viewAllCustomers(packageId);
+//		Assertions.assertNotNull(result);
+//		Assertions.assertSame(result, fetchedCustomer);
+//	}
 	
-	@Test
-	public void viewCustomerList() throws RouteNotFoundException {
-		String routeId="R1";
-		String routeFrom = "Delhi";
-		String routeTo = "Kanpur";
-		LocalDateTime departureTime = LocalDateTime.now();
-		LocalDateTime arrivalTime = LocalDateTime.now();
-		LocalDate doj = LocalDate.now();
-		String PickupPoint = "Delhi";
-		Double fare = 56.78;
-		List<Integer>customers=mock(List.class);
-		List<Customer>fetchedCustomer=mock(List.class);
-		Customer customer=mock(Customer.class);
-		Route route =mock(Route.class);
-		Optional<Customer>optional=Optional.of(customer);
-		Optional<Route>optional1=Optional.of(route);
-		when(routeRepository.findById(routeId)).thenReturn(optional1);
-		when(customerRepository.findByRoute(route)).thenReturn(customers);
-	    when(customerRepository.findAllById(customers)).thenReturn(fetchedCustomer);
-		List<Customer>result=customerService.viewCustomerList(routeId);
-		Assertions.assertNotNull(result);
-		Assertions.assertSame(result, fetchedCustomer);
-	}
+//	@Test
+//	public void viewCustomerList() throws RouteNotFoundException {
+//		String routeId="R1";
+//		String routeFrom = "Delhi";
+//		String routeTo = "Kanpur";
+//		LocalDateTime departureTime = LocalDateTime.now();
+//		LocalDateTime arrivalTime = LocalDateTime.now();
+//		LocalDate doj = LocalDate.now();
+//		String PickupPoint = "Delhi";
+//		Double fare = 56.78;
+//		List<Integer>customers=mock(List.class);
+//		List<Customer>fetchedCustomer=mock(List.class);
+//		Customer customer=mock(Customer.class);
+//		Route route =mock(Route.class);
+//		Optional<Customer>optional=Optional.of(customer);
+//		Optional<Route>optional1=Optional.of(route);
+//		when(routeRepository.findById(routeId)).thenReturn(optional1);
+//		when(customerRepository.findByRoute(route)).thenReturn(customers);
+//	    when(customerRepository.findAllById(customers)).thenReturn(fetchedCustomer);
+//		List<Customer>result=customerService.viewCustomerList(routeId);
+//		Assertions.assertNotNull(result);
+//		Assertions.assertSame(result, fetchedCustomer);
+//	}
 	
 	public void deleteCustomer() throws CustomerNotFoundException {
 		

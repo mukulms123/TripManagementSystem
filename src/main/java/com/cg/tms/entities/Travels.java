@@ -25,7 +25,6 @@ public class Travels {
 	
 	//Constructor without Id
 	public Travels(String travelsName, String agentName, String address, String contact) {
-		super();
 		this.travelsName = travelsName;
 		this.agentName = agentName;
 		this.address = address;
@@ -34,7 +33,6 @@ public class Travels {
 	
 	//Constructor with id
 	public Travels(int travelsId, String travelsName, String agentName, String address, String contact) {
-		super();
 		this.travelsId = travelsId;
 		this.travelsName = travelsName;
 		this.agentName = agentName;

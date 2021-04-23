@@ -22,6 +22,7 @@ public class Hotel {
 	private String status;
 	
 	@OneToOne
+	@JoinColumn(name = "id")
 	private Package1 pack;
 	
 	//Constructors with id and package(not added yet)
@@ -124,12 +125,6 @@ public class Hotel {
 		this.pack = pack;
 	}
 	
-	//addPackage method
-	public void addPackage(Package1 pack)
-	{
-		pack.setHotel(this);
-		this.setPack(pack);
-	}
 	
 	
 	

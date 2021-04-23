@@ -50,7 +50,7 @@ public class IFeedbackService {
 	
 	@Test
 	public void findByFeedbackId() throws FeedbackNotFoundException {
-		String feedbackId = "feedback1";
+		int feedbackId = 23;
 		Optional<Feedback> optional = Optional.empty();
 		when(feedbackRepository.findById(feedbackId)).thenReturn(optional);
 		Executable executable = () -> feedbackService.findByFeedbackId(feedbackId);

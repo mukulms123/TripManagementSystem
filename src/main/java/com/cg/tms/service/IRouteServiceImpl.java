@@ -41,14 +41,14 @@ public class IRouteServiceImpl implements IRouteService {
 	}
 
 	@Override
-	public Route removeRoute(String routeId) throws RouteNotFoundException {
+	public Route removeRoute(int routeId) throws RouteNotFoundException {
 		Route newRoute = searchRoute(routeId);
 		rRep.delete(newRoute);
 		return newRoute;
 	}
 
 	@Override
-	public Route searchRoute(String routeId) throws RouteNotFoundException {
+	public Route searchRoute(int routeId) throws RouteNotFoundException {
 		Optional<Route> opt = rRep.findById(routeId);
 		if (!opt.isPresent()) {
 			throw new RouteNotFoundException();

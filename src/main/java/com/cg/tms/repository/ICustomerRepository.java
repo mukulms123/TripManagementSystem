@@ -24,9 +24,9 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
 //	public List<Customer> viewAllCustomers(int packageId)throws PackageNotFoundException;
 //	public List<Customer> viewCustomerList(int routeId)throws RouteNotFoundException;
 
-	@Query("select booking.userId from Booking booking join booking.ticket tick  where tick.route=:route")
-    List<Integer> findByRoute(@Param("route")Route route);
+//	@Query("select booking.user_id from Booking booking join booking.ticket tick  where tick.route_id=:route")
+//    List<Integer> findByRoute(@Param("route")Route route);
 	
-	@Query("select booking.userId from Booking booking where booking.pack=:pack")
-    List<Integer> findByPack(@Param("pack")Package1 pack);
+//	@Query("select booking.user_id from Booking booking where booking.pack=:pack")
+//    List<Integer> findByPack(@Param("pack")Package1 pack);
 }
