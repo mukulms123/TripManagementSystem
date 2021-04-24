@@ -1,7 +1,4 @@
 package com.cg.tms.controller;
-
-import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -9,7 +6,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +24,6 @@ import com.cg.tms.dto.deleteCustomerRequest;
 import com.cg.tms.dto.updateCustomerRequest;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Feedback;
-import com.cg.tms.entities.User;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.exceptions.PackageNotFoundException;
 import com.cg.tms.service.ICustomerService;
@@ -69,8 +64,7 @@ public class CustomerController {
 		Customer newCust = cService.addCustomer(newCustomer);
 		CustomerDetails customerDetails = customerUtil.toDetailsCustomer(newCust);
 		return customerDetails;
-		
-		
+			
 	}
 	
 	@ResponseStatus(code = HttpStatus.OK)
@@ -114,13 +108,22 @@ public class CustomerController {
 	
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/all/{id}")
-	public List<CustomerDetails> ViewAllCustomers(@PathVariable("id") int packId) throws PackageNotFoundException
+	public CustomerDetails viewCustomersList(@PathVariable("id") int id) throws PackageNotFoundException, CustomerNotFoundException
 	{
 		System.out.println("Viewing Customer by Package ");
-		System.out.println("Package Id:"+packId);
-		List<Customer> cust = cService.viewAllCustomers(packId);
+		System.out.println("Package Id:"+id);
+		Customer cust = cService.viewCustomerList(id);
 		System.out.println(cust);
-		List<CustomerDetails> customerDetails = customerUtil.toDetailsCustomer(cust);
+		CustomerDetails customerDetails = customerUtil.toDetailsCustomer(cust);
+		return customerDetails;
+	}
+	
+	@ResponseStatus(code = HttpStatus.OK)
+	@GetMapping("/view/all")
+	public List<CustomerDetails> viewAllCustomers()
+	{
+		List<Customer> customers = cService.viewAllCustomers();
+		List<CustomerDetails> customerDetails = customerUtil.toDetailsCustomer(customers);
 		return customerDetails;
 	}
 }

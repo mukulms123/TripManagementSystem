@@ -37,7 +37,7 @@ public class IPackageServiceImpl implements IPackageService {
 		Optional<Package1> opt = pRep.findById(packageId);
 		if(!opt.isPresent())
 		{
-			throw new PackageNotFoundException();
+			throw new PackageNotFoundException("Package Not Found at Package Id:"+packageId);
 		}
 		Package1 pack = opt.get();
 		return pack;

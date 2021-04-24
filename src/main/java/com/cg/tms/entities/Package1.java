@@ -131,6 +131,8 @@ public class Package1 {
 	public void addBooking(Booking booking)
 	{
 		booking.setPack(this);
+		//Made changes here     111111
+		booking.setPackId(this.packageId);
 		this.setBooking(booking);
 	}
 	

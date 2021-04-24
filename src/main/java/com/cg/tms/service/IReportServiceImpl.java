@@ -39,7 +39,7 @@ public class IReportServiceImpl implements IReportService {
 	public Report viewReport(int reportId) throws ReportNotFoundException {
 		Optional<Report> optional = rRep.findById(reportId);
 		if (!optional.isPresent()) {
-			throw new ReportNotFoundException();
+			throw new ReportNotFoundException("Report Not Found at Id:" + reportId);
 		}
 		Report report = optional.get();
 		return report;

@@ -36,7 +36,7 @@ public class IBookingServiceImpl implements IBookingService {
 	public Booking viewBooking(int bookingId) throws BookingNotFoundException {
 		Optional<Booking> opt = bRep.findById(bookingId);
 		if(!opt.isPresent()){
-			throw new BookingNotFoundException();
+			throw new BookingNotFoundException("Booking Not Found at ID: "+bookingId);
 		}
 		Booking book = opt.get();
 		return book;

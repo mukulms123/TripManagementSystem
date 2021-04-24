@@ -37,12 +37,12 @@ public class IUserServiceImpl implements IUserService {
 		Optional<User> opt = uRep.findById(user.getUserId());
 		if(!opt.isPresent())
 		{
-			throw new CustomerNotFoundException();
+			throw new CustomerNotFoundException("Customer Not Found at Id: "+user.getUserId());
 		}
 		User newUser = opt.get();
 		if((newUser.getUserId() != user.getUserId() && (newUser.getPassword().contentEquals(user.getPassword()))))
 		{
-			throw new CustomerNotFoundException();
+			throw new CustomerNotFoundException("Customer Not Found at Id: "+user.getUserId());
 		}
 		return newUser;
 	}

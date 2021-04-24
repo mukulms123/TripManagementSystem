@@ -35,7 +35,7 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 	public Feedback findByFeedbackId(int feedbackId) throws FeedbackNotFoundException {
 		Optional<Feedback> optional = fRep.findById(feedbackId);
         if (!optional.isPresent()) {
-            throw new FeedbackNotFoundException();
+            throw new FeedbackNotFoundException("Feedback Not Found at Id: "+feedbackId);
         }
         Feedback feed = optional.get();
 		return feed;
@@ -45,7 +45,7 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 	public Feedback findByCustomerId(int customerId) throws CustomerNotFoundException {
 		Customer customer = cService.viewCustomer(customerId);
         if(customer==null){
-            throw new CustomerNotFoundException();
+            throw new CustomerNotFoundException("Customer Not Found at Id:"+customerId);
         }
         Feedback feedback = fRep.findFeedbackByCustomer(customer);
         return feedback;

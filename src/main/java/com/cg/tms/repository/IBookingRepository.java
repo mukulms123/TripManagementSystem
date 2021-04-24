@@ -1,7 +1,5 @@
 package com.cg.tms.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,8 +15,7 @@ public interface IBookingRepository extends JpaRepository<Booking, Integer>{
 //	public List<Booking> viewAllBookings();
 	
 	
-	
-	
+
 	
 
 }

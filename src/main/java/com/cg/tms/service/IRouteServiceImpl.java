@@ -31,7 +31,7 @@ public class IRouteServiceImpl implements IRouteService {
 	public Route updateRoute(Route route) throws RouteNotFoundException {
 		Optional<Route> optional = rRep.findById(route.getRouteId());
 		if (!optional.isPresent()) {
-			throw new RouteNotFoundException();
+			throw new RouteNotFoundException("Route Not Found at Id:"+route.getRouteId());
 		}
 		Route newRoute = optional.get();
 		newRoute.setRouteFrom(route.getRouteFrom());
@@ -43,6 +43,10 @@ public class IRouteServiceImpl implements IRouteService {
 	@Override
 	public Route removeRoute(int routeId) throws RouteNotFoundException {
 		Route newRoute = searchRoute(routeId);
+		if(newRoute == null)
+		{
+			throw new RouteNotFoundException("Route Not Found at Id: "+routeId);
+		}
 		rRep.delete(newRoute);
 		return newRoute;
 	}
@@ -51,7 +55,7 @@ public class IRouteServiceImpl implements IRouteService {
 	public Route searchRoute(int routeId) throws RouteNotFoundException {
 		Optional<Route> opt = rRep.findById(routeId);
 		if (!opt.isPresent()) {
-			throw new RouteNotFoundException();
+			throw new RouteNotFoundException("Route Not Found at Id:" + routeId);
 		}
 		Route newRoute = opt.get();
 		return newRoute;

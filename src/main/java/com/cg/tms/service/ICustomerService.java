@@ -2,6 +2,7 @@ package com.cg.tms.service;
 
 import java.util.List;
 
+import com.cg.tms.entities.Booking;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.exceptions.PackageNotFoundException;
@@ -13,8 +14,8 @@ public interface ICustomerService {
 	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException;
 	public Customer deleteCustomer(Customer customer) throws CustomerNotFoundException;
 	public Customer viewCustomer(int custid) throws CustomerNotFoundException;
-	public List<Customer> viewAllCustomers(int packageId)throws PackageNotFoundException;
-	public List<Customer> viewCustomerList(String routeId)throws RouteNotFoundException;
+	public Customer viewCustomerList(int packageId)throws PackageNotFoundException, CustomerNotFoundException;
+	public List<Customer> viewAllCustomers();
 
 	
 	

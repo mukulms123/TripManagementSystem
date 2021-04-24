@@ -29,8 +29,8 @@ public class ITravelsServiceImpl implements ITravelsService {
 	public Travels updateTravels(Travels travels) throws TravelsNotFoundException {
 		boolean check = tRep.existsById(travels.getTravelsId());
 		if(!check)
-		{	//add argument while Exception handling
-			throw new TravelsNotFoundException();
+		{	
+			throw new TravelsNotFoundException("Travels Not Found at Id:"+travels.getTravelsId());
 		}
 		Travels trav = tRep.save(travels);
 		return trav;
@@ -40,7 +40,7 @@ public class ITravelsServiceImpl implements ITravelsService {
 	public Travels removeTravels(int travelsId) throws TravelsNotFoundException {
 		Optional<Travels> opt = tRep.findById(travelsId);
         if (!opt.isPresent()) {
-        	throw new TravelsNotFoundException();
+        	throw new TravelsNotFoundException("Travels Not Found at Id:"+ travelsId);
         }
         Travels trav = opt.get();
         tRep.delete(trav);
@@ -51,7 +51,7 @@ public class ITravelsServiceImpl implements ITravelsService {
 	public Travels searchTravels(int travelsId) throws TravelsNotFoundException {
 		Optional<Travels> opt = tRep.findById(travelsId);
         if (!opt.isPresent()) {
-        	throw new TravelsNotFoundException();	
+        	throw new TravelsNotFoundException("Travels Not Found at Id:"+travelsId);	
         }
         Travels trav = opt.get();
         return trav;

@@ -6,6 +6,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.cg.tms.entities.Package1;
+
 public class BookingRequest {
 
 	@NotNull @Size(min = 2, max = 50)
@@ -16,8 +18,11 @@ public class BookingRequest {
 	private String bookingTitle;
 	@NotNull
 	private  LocalDate bookingDate;
+	@NotNull
 	private  int userId;
+	@NotNull
 	private int packageId;
+	
 	
 	public String getBookingType() {
 		return bookingType;

@@ -10,13 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Package1;
-import com.cg.tms.entities.Route;
 import com.cg.tms.entities.User;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.exceptions.PackageNotFoundException;
-import com.cg.tms.exceptions.RouteNotFoundException;
 import com.cg.tms.repository.ICustomerRepository;
-import com.cg.tms.repository.IPackageRepository;
 import com.cg.tms.repository.IRouteRepository;
 import com.cg.tms.repository.IUserRepository;
 
@@ -31,10 +28,11 @@ public class ICustomerServiceImpl implements ICustomerService{
 	private IRouteRepository rRep;
 	
 	@Autowired
-	private IPackageRepository pRep;
+	private IPackageService pService;
 	
 	@Autowired
 	private IUserRepository uRep;
+	
 	
 	@Override
 	public Customer addCustomer(Customer customer) {
@@ -50,8 +48,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 		boolean check = cRep.existsById(customer.getCustomerId());
 		if(!check)
 		{
-			//add argument while Exception handling
-			throw new CustomerNotFoundException();
+			throw new CustomerNotFoundException("Customer Not Found at Id: "+customer.getCustomerId());
 		}
 		Customer cust = cRep.save(customer);
 		return cust;
@@ -63,55 +60,48 @@ public class ICustomerServiceImpl implements ICustomerService{
 		boolean check = cRep.existsById(customer.getCustomerId());
 		if(!check)
 		{
-			//add argument while Exception handling
-			throw new CustomerNotFoundException();
+			throw new CustomerNotFoundException("Customer Not found at Id: " + customer.getCustomerId());
 		}
 		cRep.delete(customer);
 		return customer;
 	}
 
 	@Override
-	public Customer viewCustomer(int custid) throws CustomerNotFoundException {
-		Optional<Customer> opt = cRep.findById(custid);
+	public Customer viewCustomer(int custId) throws CustomerNotFoundException {
+		Optional<Customer> opt = cRep.findById(custId);
 		if(!opt.isPresent()) {
-			throw new CustomerNotFoundException();
+			throw new CustomerNotFoundException("Customer Not Found at Id: "+custId);
 		}
 		Customer cust = opt.get();
 		return cust;
 	}
 
 	@Override
-	public List<Customer> viewAllCustomers(int packId) throws PackageNotFoundException {
-		 Optional<Package1> optionalPack = pRep.findById(packId);
-	        if (!optionalPack.isPresent()) {
-	            throw new PackageNotFoundException();
+	public Customer viewCustomerList(int id) throws PackageNotFoundException,CustomerNotFoundException {
+		 	Package1 pack = pService.searchPackage(id);
+		 	int packId = cRep.findByPackage(pack);
+	        //List<Booking> booking = bRep.findByPackId(id);
+	        //List<Integer> ids = new ArrayList<>();
+	        //for (Booking booking2 : booking) {
+	        //	System.out.println(booking2.getUserId());
+			//}
+	        
+	        //List<Integer> custIds = cRep.findByPack(id);
+	        Optional<Customer> opt=cRep.findById(packId);
+	        if(!opt.isPresent())
+	        {
+	        	throw new CustomerNotFoundException("Customer Not Found at Package Id: "+id);
 	        }
-	        Package1 pack = optionalPack.get();
-	        List<Integer> ids = cRep.findByPack(packId);
-	        //List<Customer>customers=cRep.findAllById(ids);
-	        return null;
+	        Customer cust = opt.get();
+	        return cust;
 	}
-
-//	@Override
-//	public List<Customer> viewCustomerList(String routeId) throws RouteNotFoundException {
-//		Optional<Route> opt = rRep.findById(routeId);
-//		if(!opt.isPresent())
-//		{
-//			throw new RouteNotFoundException();
-//		}
-//		Route route = opt.get();
-//		List<Integer> ids = cRep.findByRoute(route);
-//		List<Customer> customers = cRep.findAllById(ids);
-//		return null;
-//	}
-
 
 	@Override
-	public List<Customer> viewCustomerList(String routeId) throws RouteNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Customer> viewAllCustomers() {
+		List<Customer> customers = cRep.findAll();
+		return customers;
 	}
-	
-	//to validate the 
+
+
 
 }

@@ -30,6 +30,9 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
 //	@Query("select booking.user_id from Booking booking join booking.ticket tick  where tick.route_id=:route")
 //    List<Integer> findByRoute(@Param("route")Route route);
 	
-	@Query("select userId from Booking")
-    List<Integer> findByPack(@Param("id") int id);
+	@Query("select booking.userId from Booking booking where booking.pack=:pack")
+	public int findByPackage(@Param("pack") Package1 pack);
+	
+//	@Query("select userId from Booking where packId = :id")
+//    List<Integer> findByPack(@Param("id") int id);
 }

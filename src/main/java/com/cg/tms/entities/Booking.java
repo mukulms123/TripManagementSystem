@@ -19,12 +19,13 @@ public class Booking {
 	private String bookingType;
 	private String description;
 	private String bookingTitle;
-	private  LocalDate bookingDate;
+	private LocalDate bookingDate;
 	private int packId;
+	private int userId;
 
 	@OneToOne
 	private Package1 pack;
-	private  int userId;
+
 	public int getBookingId() {
 		return bookingId;
 	}
@@ -90,5 +91,5 @@ public class Booking {
 		this.packId = packId;
 	}
 	
-
+	
 }

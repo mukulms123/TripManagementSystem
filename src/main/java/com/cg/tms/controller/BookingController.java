@@ -55,7 +55,6 @@ public class BookingController {
 		System.out.println("Id:"+id);
 		Booking book = new Booking(requestData.getBookingType(),requestData.getDescription(),requestData.getBookingTitle(),requestData.getBookingDate(),requestData.getUserId());
 		book.setUserId(id);
-		book.setPackId(requestData.getPackageId());
 		Booking booking = bService.makeBooking(book);
 		BookingDetails bookingDetails = bookingUtil.toDetailsBooking(booking);
 		return bookingDetails;
