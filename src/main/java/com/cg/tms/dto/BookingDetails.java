@@ -3,7 +3,7 @@ package com.cg.tms.dto;
 import java.time.LocalDate;
 
 public class BookingDetails {
-//Booking done
+//Booking 
 	private int bookingId;
 	private String bookingType;
 	private String description;
