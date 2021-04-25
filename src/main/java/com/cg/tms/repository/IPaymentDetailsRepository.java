@@ -10,4 +10,5 @@ import com.cg.tms.entities.PaymentDetails;
 @Repository
 public interface IPaymentDetailsRepository extends JpaRepository<PaymentDetails, Integer>{
 	
+
 }

@@ -34,6 +34,7 @@ public class IBookingServiceImpl implements IBookingService {
 
 	@Override
 	public Booking viewBooking(int bookingId) throws BookingNotFoundException {
+//		Optional<Booking> opt = bRep.viewBooking(bookingId);
 		Optional<Booking> opt = bRep.findById(bookingId);
 		if(!opt.isPresent()){
 			throw new BookingNotFoundException("Booking Not Found at ID: "+bookingId);
@@ -44,7 +45,8 @@ public class IBookingServiceImpl implements IBookingService {
 
 	@Override
 	public List<Booking> viewAllBookings() {
-		List<Booking> bookings = bRep.findAll();
+		List<Booking> bookings = bRep.viewAllBookings();
+//		List<Booking> bookings = bRep.findAll();
 		return bookings;
 	}
 

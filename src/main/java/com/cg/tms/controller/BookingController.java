@@ -1,6 +1,5 @@
 package com.cg.tms.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -21,10 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.tms.dto.BookingDetails;
 import com.cg.tms.dto.BookingRequest;
 import com.cg.tms.entities.Booking;
-import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Package1;
 import com.cg.tms.exceptions.BookingNotFoundException;
-import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.service.IBookingService;
 import com.cg.tms.util.BookingUtil;
 
