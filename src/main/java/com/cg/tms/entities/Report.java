@@ -17,7 +17,7 @@ public class Report {
 	private String reportName;
 	private String reportType;
 	
-	//Constructor without Admin
+	//constructor without admin
 	public Report(int reportId, String reportName, String reportType) {
 		this.reportId = reportId;
 		this.reportName = reportName;
