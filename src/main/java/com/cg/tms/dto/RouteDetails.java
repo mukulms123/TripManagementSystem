@@ -61,6 +61,8 @@ public class RouteDetails {
 	public void setFare(double fare) {
 		this.fare = fare;
 	}
+	
+	//Constructor
 	public RouteDetails(int routeId, String routeFrom, String routeTo, LocalDateTime departureTime,
 			LocalDateTime arrivalTime, LocalDate doj, String pickupPoint, double fare) {
 		

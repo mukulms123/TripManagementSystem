@@ -16,48 +16,46 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.cg.tms.entities.Report;
 import com.cg.tms.exceptions.ReportNotFoundException;
 
-
-
-@ExtendWith({SpringExtension.class})
+@ExtendWith({ SpringExtension.class })
 @DataJpaTest
 @Import(IReportServiceImpl.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class IReportServiceImplTest {
-	
+
 	@Autowired
 	private IReportService rService;
-	
+
 	@Autowired
 	private EntityManager em;
-	
+
 	@Test
 	public void addReport() {
-	Report report = new Report("report1","summary");
-	Report reportFound = rService.addReport(report);
-	Assertions.assertEquals(reportFound.getReportName(), report.getReportName());
+		Report report = new Report("report1", "summary");
+		Report reportFound = rService.addReport(report);
+		Assertions.assertEquals(reportFound.getReportName(), report.getReportName());
 	}
-	
+
 	@Test
 	public void deleteReport() throws ReportNotFoundException {
-	Report report = new Report("report1","summary");
-	em.persist(report);
-	Report reportFound = rService.deleteReport(report.getReportId());
-	Assertions.assertEquals(reportFound.getReportName(), report.getReportName());
+		Report report = new Report("report1", "summary");
+		em.persist(report);
+		Report reportFound = rService.deleteReport(report.getReportId());
+		Assertions.assertEquals(reportFound.getReportName(), report.getReportName());
 	}
-	
+
 	@Test
 	public void viewReport() throws ReportNotFoundException {
-	Report report = new Report("report1","summary");
-	em.persist(report);
-	Report reportFound = rService.viewReport(report.getReportId());
-	Assertions.assertEquals(reportFound.getReportName(), report.getReportName());
+		Report report = new Report("report1", "summary");
+		em.persist(report);
+		Report reportFound = rService.viewReport(report.getReportId());
+		Assertions.assertEquals(reportFound.getReportName(), report.getReportName());
 	}
-	
+
 	@Test
 	public void viewAllReports() {
-	Report report = new Report("report1","summary");
-	em.persist(report);
-	List<Report> reportFound = rService.viewAllReports();
-	Assertions.assertEquals(reportFound.get(0).getReportName(), report.getReportName());
+		Report report = new Report("report1", "summary");
+		em.persist(report);
+		List<Report> reportFound = rService.viewAllReports();
+		Assertions.assertNotNull(reportFound);
 	}
 }

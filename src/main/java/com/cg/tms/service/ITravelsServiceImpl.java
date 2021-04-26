@@ -17,59 +17,63 @@ import com.cg.tms.repository.ITravelsRespository;
 @Service
 @Transactional
 public class ITravelsServiceImpl implements ITravelsService {
-	
-	//For Logging
+
+	// For Logging
 	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
 
 	@Autowired
 	private ITravelsRespository tRep;
-	
+
+	// Used for adding Travels
 	@Override
 	public Travels addTravels(Travels travels) {
 		Travels trav = tRep.save(travels);
-		logger.info("********Adding Travel by Id: "+travels.getTravelsId()+"********");
+		logger.info("********Adding Travel by Id: " + travels.getTravelsId() + "********");
 		return trav;
 	}
 
+	// Used for Updating Travels
 	@Override
 	public Travels updateTravels(Travels travels) throws TravelsNotFoundException {
 		boolean check = tRep.existsById(travels.getTravelsId());
-		if(!check)
-		{	
-			throw new TravelsNotFoundException("Travels Not Found at Id:"+travels.getTravelsId());
+		if (!check) {
+			throw new TravelsNotFoundException("Travels Not Found at Id:" + travels.getTravelsId());
 		}
 		Travels trav = tRep.save(travels);
-		logger.info("********Updating Travels by Id: "+travels.getTravelsId()+"********");
+		logger.info("********Updating Travels by Id: " + travels.getTravelsId() + "********");
 		return trav;
 	}
 
+	// Used for removing Travels using travel ID
 	@Override
 	public Travels removeTravels(int travelsId) throws TravelsNotFoundException {
 		Optional<Travels> opt = tRep.findById(travelsId);
-        if (!opt.isPresent()) {
-        	throw new TravelsNotFoundException("Travels Not Found at Id:"+ travelsId);
-        }
-        Travels trav = opt.get();
-        logger.info("********Deleting Travels by Id: "+travelsId+"********");
-        tRep.delete(trav);
+		if (!opt.isPresent()) {
+			throw new TravelsNotFoundException("Travels Not Found at Id:" + travelsId);
+		}
+		Travels trav = opt.get();
+		logger.info("********Deleting Travels by Id: " + travelsId + "********");
+		tRep.delete(trav);
 		return trav;
 	}
 
+	// Used for searching Travels using Travels ID
 	@Override
 	public Travels searchTravels(int travelsId) throws TravelsNotFoundException {
 		Optional<Travels> opt = tRep.findById(travelsId);
-        if (!opt.isPresent()) {
-        	throw new TravelsNotFoundException("Travels Not Found at Id:"+travelsId);	
-        }
-        Travels trav = opt.get();
-        logger.info("********Viewing Travels by Id: "+travelsId+"********");
-        return trav;
+		if (!opt.isPresent()) {
+			throw new TravelsNotFoundException("Travels Not Found at Id:" + travelsId);
+		}
+		Travels trav = opt.get();
+		logger.info("********Viewing Travels by Id: " + travelsId + "********");
+		return trav;
 	}
 
+	// Used for viewing all Travels
 	@Override
 	public List<Travels> viewTravels() {
-		List<Travels> travelsList =tRep.findAll();
-		logger.info("********Viewing all Travels: "+travelsList+"********");
+		List<Travels> travelsList = tRep.findAll();
+		logger.info("********Viewing all Travels: " + travelsList + "********");
 		return travelsList;
 	}
 

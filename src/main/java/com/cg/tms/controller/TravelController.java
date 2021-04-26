@@ -1,6 +1,5 @@
 package com.cg.tms.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,15 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.tms.dto.ReportDetails;
 import com.cg.tms.dto.TravelDetails;
 import com.cg.tms.dto.TravelRequest;
-import com.cg.tms.entities.Bus;
-import com.cg.tms.entities.Route;
 import com.cg.tms.entities.Travels;
-import com.cg.tms.exceptions.RouteNotFoundException;
 import com.cg.tms.exceptions.TravelsNotFoundException;
-import com.cg.tms.repository.IBusRepository;
 import com.cg.tms.service.ITravelsService;
 import com.cg.tms.util.TravelUtil;
 
@@ -38,81 +32,69 @@ public class TravelController {
 
 	@Autowired
 	private ITravelsService tService;
-	
-	@Autowired 
-	private TravelUtil travelUtil;
-	
+
 	@Autowired
-	private IBusRepository bRep;
-	
+	private TravelUtil travelUtil;
+
+	// Used for Testing
 	@RequestMapping("/hello")
-	public String feedbackGreet()
-	{
-		System.out.println("Greeting!!");
-		return "Hello from Travel";		
+	public String feedbackGreet() {
+		return "Hello from Travel";
 	}
-	
+
+	// Used for adding Travels
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/add")
-	public TravelDetails addTravels(@RequestBody @Valid TravelRequest requestData)
-	{
-		System.out.println("Creating Travels");
-		System.out.println("req Data:"+requestData);
-		Travels trav = new Travels(requestData.getTravelsName(),requestData.getAgentName(),requestData.getAddress(),requestData.getContact());
+	public TravelDetails addTravels(@RequestBody @Valid TravelRequest requestData) {
+		Travels trav = new Travels(requestData.getTravelsName(), requestData.getAgentName(), requestData.getAddress(),
+				requestData.getContact());
 		Travels added = tService.addTravels(trav);
 		TravelDetails travelDetails = travelUtil.toTravelsDetail(added);
 		return travelDetails;
-		
+
 	}
-	
+
+	// Used for updating Travels using Travel ID
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping("/update/{id}")
-	public TravelDetails updateTravels(@RequestBody @Valid TravelRequest requestData,@PathVariable @Min(1) int id) throws TravelsNotFoundException
-	{
-		System.out.println("Updating Travels");
-		System.out.println("req Data:"+requestData);
-		System.out.println("Id:"+id);
-		Travels trav = new Travels(requestData.getTravelsName(),requestData.getAgentName(),requestData.getAddress(),requestData.getContact());
+	public TravelDetails updateTravels(@RequestBody @Valid TravelRequest requestData, @PathVariable @Min(1) int id)
+			throws TravelsNotFoundException {
+		Travels trav = new Travels(requestData.getTravelsName(), requestData.getAgentName(), requestData.getAddress(),
+				requestData.getContact());
 		trav.setTravelsId(id);
 		Travels travel = tService.updateTravels(trav);
 		TravelDetails travelDetails = travelUtil.toTravelsDetail(travel);
 		return travelDetails;
-		
-		
+
 	}
-	
+
+	// Used for deleting Travels
 	@ResponseStatus(code = HttpStatus.OK)
 	@DeleteMapping("/delete/{id}")
-	public TravelDetails deleteTravels(@PathVariable("id") @Min(1) Integer travelId) throws TravelsNotFoundException 
-	{
-		System.out.println("deleting Route");
-		System.out.println("Route id: " + travelId);
+	public TravelDetails deleteTravels(@PathVariable("id") @Min(1) Integer travelId) throws TravelsNotFoundException {
 		Travels travel = tService.removeTravels(travelId);
 		TravelDetails travelDetails = travelUtil.toTravelsDetail(travel);
 		return travelDetails;
 	}
-	
+
+	// Used for searching Travels
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/{id}")
-	public TravelDetails searchTravels(@PathVariable("id") @Min(1) Integer travelId) throws TravelsNotFoundException 
-	{
-		System.out.println("View Route");
-		System.out.println("Route id: " + travelId);
-		Travels travel = tService.searchTravels(travelId);	
+	public TravelDetails searchTravels(@PathVariable("id") @Min(1) Integer travelId) throws TravelsNotFoundException {
+		Travels travel = tService.searchTravels(travelId);
 		TravelDetails travelDetails = travelUtil.toTravelsDetail(travel);
 		return travelDetails;
-	
+
 	}
-	
+
+	// Used for viewing all Travels
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/all")
-	public List<TravelDetails> viewTravels() 
-	{
-		System.out.println("View All Routes");
+	public List<TravelDetails> viewTravels() {
 		List<Travels> travels = tService.viewTravels();
 		List<TravelDetails> travelDetails = travelUtil.toTravelsDetail(travels);
-		return travelDetails;		
-	
+		return travelDetails;
+
 	}
-	
+
 }

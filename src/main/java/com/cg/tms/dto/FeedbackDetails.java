@@ -13,6 +13,8 @@ public class FeedbackDetails {
 	private  int rating;
 	private LocalDate submitDate;
 	private int customerId;
+	
+	//Getters and Setters 
 	public String getFeedback() {
 		return feedback;
 	}

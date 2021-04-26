@@ -9,6 +9,8 @@ public class BookingDetails {
 	private String description;
 	private String bookingTitle;
 	private  LocalDate bookingDate;
+	
+	//Constructor 
 	public BookingDetails(int bookingId, String bookingType, String description, String bookingTitle,
 			LocalDate bookingDate) {
 		super();
@@ -18,6 +20,8 @@ public class BookingDetails {
 		this.bookingTitle = bookingTitle;
 		this.bookingDate = bookingDate;
 	}
+	
+	//Getters and Setters
 	public int getBookingId() {
 		return bookingId;
 	}

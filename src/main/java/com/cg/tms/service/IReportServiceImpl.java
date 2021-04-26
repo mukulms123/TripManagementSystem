@@ -17,32 +17,34 @@ import com.cg.tms.exceptions.ReportNotFoundException;
 import com.cg.tms.repository.IFeedbackRepository;
 import com.cg.tms.repository.IReportRepository;
 
-
 @Service
 @Transactional
 public class IReportServiceImpl implements IReportService {
-	
-	//For Logging
+
+	// For Logging
 	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
-	
+
 	@Autowired
 	private IReportRepository rRep;
-	
+
+	// Used to add Report
 	@Override
 	public Report addReport(Report report) {
 		Report rept = rRep.save(report);
-		logger.info("********Adding Report by Id: "+rept.getReportId()+"********");
+		logger.info("********Adding Report by Id: " + rept.getReportId() + "********");
 		return rept;
 	}
 
+	// Used to delete Report
 	@Override
 	public Report deleteReport(int reportId) throws ReportNotFoundException {
 		Report report = viewReport(reportId);
 		rRep.delete(report);
-		logger.info("********Deleting Report by Id: "+reportId+"********");
+		logger.info("********Deleting Report by Id: " + reportId + "********");
 		return report;
 	}
 
+	// Used to view Report using Report ID
 	@Override
 	public Report viewReport(int reportId) throws ReportNotFoundException {
 		Optional<Report> optional = rRep.findById(reportId);
@@ -50,14 +52,15 @@ public class IReportServiceImpl implements IReportService {
 			throw new ReportNotFoundException("Report Not Found at Id:" + reportId);
 		}
 		Report report = optional.get();
-		logger.info("********Viewing Report by Id: "+report.getReportId()+"********");
+		logger.info("********Viewing Report by Id: " + report.getReportId() + "********");
 		return report;
 	}
 
+	// Used for viewing all Reports
 	@Override
 	public List<Report> viewAllReports() {
 		List<Report> reports = rRep.findAll();
-		logger.info("********Viewing all Reports: "+reports+"********");
+		logger.info("********Viewing all Reports: " + reports + "********");
 		return reports;
 	}
 

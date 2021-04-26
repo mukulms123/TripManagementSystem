@@ -87,7 +87,7 @@ public class Booking {
 	public int getPackId() {
 		return packId;
 	}
-	public void setPackId(int id) {
+	public void setPackId(int packId) {
 		this.packId = packId;
 	}
 	

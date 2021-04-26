@@ -11,7 +11,7 @@ public class updateCustomerRequest {
 	private String customerPassword;
 	@NotBlank
 	private String address;
-	@NotBlank
+	@NotBlank @Size(min=10,max=11)
 	private String mobileNo;
 	@NotBlank
 	private String email;

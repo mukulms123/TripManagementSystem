@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.validation.constraints.Email;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.cg.tms.entities.Bus;
 import com.cg.tms.entities.Route;
 import com.cg.tms.exceptions.RouteNotFoundException;
-import com.cg.tms.service.IRouteServiceImpl;
 
 @ExtendWith({ SpringExtension.class })
 @Import(IRouteServiceImpl.class)
@@ -64,31 +62,28 @@ public class IRouteServiceImplTest {
 	}
 
 	@Test
-	public void removeRoute()
-	{
+	public void removeRoute() {
 		Route route = new Route("delhi", "faridabad", LocalDateTime.now(), LocalDateTime.now(), LocalDate.now(),
 				"delhi", 300.0);
 		em.persist(route);
 		Route routeFound = rService.removeRoute(route.getRouteId());
 		Assertions.assertEquals(routeFound.getRouteTo(), route.getRouteTo());
 	}
-	
+
 	@Test
-	public void searchRoute()
-	{
+	public void searchRoute() {
 		Route route = new Route("delhi", "faridabad", LocalDateTime.now(), LocalDateTime.now(), LocalDate.now(),
 				"delhi", 300.0);
 		em.persist(route);
 		Route routeFound = rService.searchRoute(route.getRouteId());
 		Assertions.assertEquals(routeFound.getRouteTo(), route.getRouteTo());
 	}
-	
-	public void viewRouteList()
-	{
+
+	public void viewRouteList() {
 		Route route = new Route("delhi", "faridabad", LocalDateTime.now(), LocalDateTime.now(), LocalDate.now(),
 				"delhi", 300.0);
 		em.persist(route);
 		List<Route> routeFound = rService.viewRouteList();
-		Assertions.assertEquals(routeFound.get(0).getRouteTo(), route.getRouteTo());
+		Assertions.assertNotNull(routeFound);
 	}
 }

@@ -10,22 +10,23 @@ import com.cg.tms.entities.TicketDetails;
 public class RouteRequest {
 
 	@NotNull
-	private String  routeFrom;
+	private String routeFrom;
 	@NotNull
-	private String  routeTo;
+	private String routeTo;
 	@NotNull
-	private  LocalDateTime  departureTime;
+	private LocalDateTime departureTime;
 	@NotNull
-	private  LocalDateTime   arrivalTime;
+	private LocalDateTime arrivalTime;
 	@NotNull
-	private  LocalDate   doj;
+	private LocalDate doj;
 	@NotNull
 	private String pickupPoint;
 	@NotNull
-	private  double fare;
-	
+	private double fare;
+
 	private int routeId;
 
+	// Getters and Setters
 	public String getRouteFrom() {
 		return routeFrom;
 	}
@@ -82,13 +83,6 @@ public class RouteRequest {
 		this.fare = fare;
 	}
 
-	@Override
-	public String toString() {
-		return "RouteRequest [routeFrom=" + routeFrom + ", routeTo=" + routeTo + ", departureTime=" + departureTime
-				+ ", arrivalTime=" + arrivalTime + ", doj=" + doj + ", pickupPoint=" + pickupPoint + ", fare=" + fare
-				+ "]";
-	}
-
 	public int getRouteId() {
 		return routeId;
 	}
@@ -96,7 +90,5 @@ public class RouteRequest {
 	public void setRouteId(int routeId) {
 		this.routeId = routeId;
 	}
-	
-	
-	
+
 }

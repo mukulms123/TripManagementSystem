@@ -10,14 +10,15 @@ public class TravelRequest {
 	@NotNull
 	private String travelsName;
 	@NotNull
-	private String  agentName;
+	private String agentName;
 	@NotNull
-	private String  address;
+	private String address;
 	@NotNull
-	private String  contact;
-	
+	private String contact;
+
 	private Bus bus;
 
+	// Getters and Setters
 	public int getTravelsId() {
 		return travelsId;
 	}
@@ -65,12 +66,4 @@ public class TravelRequest {
 	public void setBus(Bus bus) {
 		this.bus = bus;
 	}
-
-	@Override
-	public String toString() {
-		return "TravelRequest [travelsId=" + travelsId + ", travelsName=" + travelsName + ", agentName=" + agentName
-				+ ", address=" + address + ", contact=" + contact + ", bus=" + bus + "]";
-	}
-	
-	
 }

@@ -2,7 +2,6 @@ package com.cg.tms.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -31,6 +30,7 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 	@Autowired 
 	private ICustomerRepository cRep;
 	
+	//Used for Adding Feedback
 	@Override
 	public Feedback addFeedback(Feedback feedback) {
 		Feedback feed = fRep.save(feedback);
@@ -38,6 +38,7 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 		return feed;
 	}
 
+	//Used for finding Feedback by feedback ID
 	@Override
 	public Feedback findByFeedbackId(int feedbackId) throws FeedbackNotFoundException {
 		Optional<Feedback> optional = fRep.findById(feedbackId);
@@ -49,6 +50,7 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 		return feed;
 	}
 
+	//Used for finding Feedback using customer ID
 	@Override
 	public Feedback findByCustomerId(int customerId) throws CustomerNotFoundException {
 		Optional<Customer> opt = cRep.findById(customerId);
@@ -61,6 +63,7 @@ public class IFeedbackServiceImpl implements IFeedbackService {
         return feedback;
 	}
 
+	//Used for viewing all Feedbacks 
 	@Override
 	public List<Feedback> viewAllFeedbacks() {
 		List<Feedback> feedbacks = fRep.findAll();

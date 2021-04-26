@@ -43,17 +43,16 @@ public class PackageController {
 	@Autowired
 	private ICustomerService cService;
 
+	// Used for Testing
 	@RequestMapping("/hello")
 	public String feedbackGreet() {
-		System.out.println("Greeting!!");
 		return "Hello from Package!!";
 	}
 
+	// Used for adding package
 	@ResponseStatus(code = HttpStatus.OK)
 	@PostMapping("/add")
 	public PackageDetails addPackage(@RequestBody @Valid PackageRequest requestData) throws CustomerNotFoundException {
-		System.out.println("Adding Package ");
-		System.out.println("req data: " + requestData);
 		Package1 pack = new Package1(requestData.getPackageName(), requestData.getPackageDescription(),
 				requestData.getPackageType(), requestData.getPackageCost());
 		Booking book = requestData.getBooking();
@@ -72,33 +71,29 @@ public class PackageController {
 		return packageDetails;
 	}
 
+	// Used for deleting Package
 	@ResponseStatus(code = HttpStatus.OK)
 	@DeleteMapping("/delete/{id}")
-	public PackageDetails addPackage(@PathVariable("id") @Min(1) int packageId) throws PackageNotFoundException {
-		System.out.println("Deleting Package ");
-		System.out.println("Package id: " + packageId);
+	public PackageDetails deletePackage(@PathVariable("id") @Min(1) int packageId) throws PackageNotFoundException {
 		Package1 pack = pService.deletePackage(packageId);
-		System.out.println(pack);
 		PackageDetails packageDetails = packageUtil.toDetailsPackage(pack);
 		return packageDetails;
 	}
 
+	// Used for viewing Package using Package ID
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/{id}")
 	public PackageDetails viewPackage(@PathVariable("id") @Min(1) int packageId) throws PackageNotFoundException {
-		System.out.println("View Package ");
-		System.out.println("Package id: " + packageId);
 		Package1 pack = pService.searchPackage(packageId);
 		PackageDetails packageDetails = packageUtil.toDetailsPackage(pack);
 		return packageDetails;
 	}
 
+	// Used for Viewing all Packages
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/all")
 	public List<PackageDetails> viewAllPackage() throws PackageNotFoundException {
-		System.out.println("View All Packages ");
 		List<Package1> packs = pService.viewAllPackages();
-		System.out.println(packs);
 		List<PackageDetails> packageDetails = packageUtil.toDetailsPackages(packs);
 		return packageDetails;
 	}

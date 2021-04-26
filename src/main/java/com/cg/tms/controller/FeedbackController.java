@@ -1,9 +1,6 @@
 package com.cg.tms.controller;
 
-import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.tms.dto.FeedbackDetails;
-import com.cg.tms.dto.createCustomerRequest;
 import com.cg.tms.dto.createFeedbackRequest;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Feedback;
@@ -36,77 +32,70 @@ public class FeedbackController {
 
 	@Autowired
 	private IFeedbackService fService;
-	
+
 	@Autowired
 	private FeedbackUtil feedbackUtil;
-	
+
+	// Used for testing
 	@RequestMapping("/hello")
-	public String feedbackGreet()
-	{
+	public String feedbackGreet() {
 		System.out.println("Greeting!!");
-		return "Hello from feedback!!";		
+		return "Hello from feedback!!";
 	}
-	
+
+	// Used for adding feedback
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("/add")
-	public FeedbackDetails addCustomer(@RequestBody @Valid createFeedbackRequest requestData) {
-		System.out.println("Adding Feedback ");
-		System.out.println("req data: " + requestData);
-		Feedback feed = new Feedback(requestData.getFeedback(),requestData.getRating(),requestData.getSubmitDate());
+	public FeedbackDetails addFeedback(@RequestBody @Valid createFeedbackRequest requestData) {
+		Feedback feed = new Feedback(requestData.getFeedback(), requestData.getRating(), requestData.getSubmitDate());
 		Customer customer = requestData.getCustomer();
-		if(customer!=null) {
+		if (customer != null) {
 			feed.setCustomer(customer);
 		}
 		Feedback newFeedback = fService.addFeedback(feed);
 		FeedbackDetails details = feedbackUtil.toDetailsFeedback(newFeedback);
-        return details;
-		
+		return details;
+
 	}
-	
+
+	// Used for adding feedback for customer ID
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("/add/{id}")
-	public FeedbackDetails addCustomer(@RequestBody @Valid createFeedbackRequest requestData,@PathVariable("id") @Min(1) int id) {
-		System.out.println("Adding Feedback ");
-		System.out.println("req data: " + requestData);
-		Feedback feed = new Feedback(requestData.getFeedback(),requestData.getRating(),requestData.getSubmitDate());
+	public FeedbackDetails addFeedback(@RequestBody @Valid createFeedbackRequest requestData,
+			@PathVariable("id") @Min(1) int id) {
+		Feedback feed = new Feedback(requestData.getFeedback(), requestData.getRating(), requestData.getSubmitDate());
 		Customer customer = new Customer(id);
-		System.out.println("Customer_id:"+customer.getCustomerId());
 		feed.setCustomer(customer);
-		
 		Feedback newFeedback = fService.addFeedback(feed);
 		FeedbackDetails details = feedbackUtil.toDetailsFeedback(newFeedback);
-        return details;	
+		return details;
 	}
-	
+
+	// Used for viewing feedback by feedback ID
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/{id}")
-    public FeedbackDetails getFeedbackById(@PathVariable("id") int id) throws FeedbackNotFoundException {
-		System.out.println("Finding Feedback ");
-		System.out.println("Feedback ID: " + id);
-        Feedback feedback = fService.findByFeedbackId(id);
-        FeedbackDetails details = feedbackUtil.toDetailsFeedback(feedback);
-        return details;
-    } 
-	
+	public FeedbackDetails getFeedbackById(@PathVariable("id") int id) throws FeedbackNotFoundException {
+		Feedback feedback = fService.findByFeedbackId(id);
+		FeedbackDetails details = feedbackUtil.toDetailsFeedback(feedback);
+		return details;
+	}
+
+	// Used for viewing the feedback by customer ID
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/custview/{id}")
-    public FeedbackDetails getFeedbackByCustId(@PathVariable("id") int id) throws FeedbackNotFoundException, CustomerNotFoundException {
-		System.out.println("Finding Feedback ");
-		System.out.println("Feedback ID: " + id);
-        Feedback feedback = fService.findByCustomerId(id);
-        System.out.println(feedback);
-        FeedbackDetails details = feedbackUtil.toDetailsFeedback(feedback);
-        return details;
-    } 
-	
+	public FeedbackDetails getFeedbackByCustId(@PathVariable("id") int id)
+			throws FeedbackNotFoundException, CustomerNotFoundException {
+		Feedback feedback = fService.findByCustomerId(id);
+		FeedbackDetails details = feedbackUtil.toDetailsFeedback(feedback);
+		return details;
+	}
+
+	// Used for view all Feedbacks
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/all")
-	public List<FeedbackDetails> viewAllFeedbacks()
-	{
-		System.out.println("Viewing all Feedbacks ");
+	public List<FeedbackDetails> viewAllFeedbacks() {
 		List<Feedback> feedbacks = fService.viewAllFeedbacks();
-		System.out.println(feedbacks);
 		List<FeedbackDetails> details = feedbackUtil.toDetailsFeedback(feedbacks);
-        return details;
+		return details;
 	}
 }

@@ -4,11 +4,12 @@ public class CustomerDetails {
 
 	private int customerId;
 	private String customerName;
-	private String  customerPassword;
+	private String customerPassword;
 	private String address;
 	private String mobileNo;
 	private String email;
-	
+
+	// Constructors
 	public CustomerDetails(int customerId, String customerName, String customerPassword, String address,
 			String mobileNo, String email) {
 		super();
@@ -20,6 +21,7 @@ public class CustomerDetails {
 		this.email = email;
 	}
 
+	// Getters and Setters
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -67,6 +69,5 @@ public class CustomerDetails {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
 }

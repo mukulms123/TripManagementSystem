@@ -1,7 +1,5 @@
 package com.cg.tms.dto;
 
-import com.cg.tms.entities.Bus;
-
 public class TravelDetails {
 	private int travelsId;
 	private String travelsName;
@@ -9,6 +7,7 @@ public class TravelDetails {
 	private String address;
 	private String contact;
 
+	//Getters and Setters
 	public String getAddress() {
 		return address;
 	}
@@ -49,6 +48,7 @@ public class TravelDetails {
 		this.agentName = agentName;
 	}
 
+	//Constructor
 	public TravelDetails(int travelsId, String travelsName, String agentName, String address, String contact) {
 		super();
 		this.travelsId = travelsId;
@@ -57,6 +57,5 @@ public class TravelDetails {
 		this.address = address;
 		this.contact = contact;
 	}
-	
-	
+
 }

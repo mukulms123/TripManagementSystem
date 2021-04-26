@@ -6,24 +6,22 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.cg.tms.entities.Package1;
-
 public class BookingRequest {
 
-	@NotNull @Size(min = 2, max = 50)
+	@NotNull @Size(min = 2, max = 50) @NotBlank
 	private String bookingType;
-	@NotNull @Size(min = 2, max = 50)
+	@NotNull @Size(min = 2, max = 50) @NotBlank
 	private String description;
-	@NotNull @Size(min = 2, max = 50)
+	@NotNull @Size(min = 2, max = 50) @NotBlank
 	private String bookingTitle;
-	@NotNull
+	@NotNull @NotBlank
 	private  LocalDate bookingDate;
-	@NotNull
+	@NotNull @NotBlank
 	private  int userId;
-	@NotNull
+	@NotNull @NotBlank
 	private int packageId;
 	
-	
+	//Getters and Setters
 	public String getBookingType() {
 		return bookingType;
 	}
@@ -55,12 +53,7 @@ public class BookingRequest {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	@Override
-	public String toString() {
-		return "createBookingRequest [bookingType=" + bookingType + ", description=" + description + ", bookingTitle="
-				+ bookingTitle + ", bookingDate=" + bookingDate + "]";
-	}
-	
+
 	private String bookingId;
 
 	public String getBookingId() {

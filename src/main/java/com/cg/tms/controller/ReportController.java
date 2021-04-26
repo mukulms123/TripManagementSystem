@@ -1,6 +1,5 @@
 package com.cg.tms.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -29,61 +28,51 @@ import com.cg.tms.util.ReportUtil;
 @RequestMapping("/report")
 @Validated
 public class ReportController {
-	
+
 	@Autowired
 	private IReportService rService;
-	
-	@Autowired 
+
+	@Autowired
 	private ReportUtil reportUtil;
-	
+
+	// Used for testing
 	@RequestMapping("/hello")
-	public String feedbackGreet()
-	{
-		System.out.println("Greeting!!");
-		return "Hello from Report";		
+	public String feedbackGreet() {
+		return "Hello from Report";
 	}
-	
+
+	// Used for adding report
 	@ResponseStatus(code = HttpStatus.OK)
 	@PostMapping("/add")
-	public ReportDetails addReport(@RequestBody @Valid ReportRequest requestData)
-	{
-		System.out.println("Adding Report");
-		Report report = rService.addReport(new Report(requestData.getReportName(),requestData.getReportType()));
+	public ReportDetails addReport(@RequestBody @Valid ReportRequest requestData) {
+		Report report = rService.addReport(new Report(requestData.getReportName(), requestData.getReportType()));
 		ReportDetails rep = reportUtil.toDetailsReport(report);
 		return rep;
-		
+
 	}
-	
+
+	// Used for deleting Report
 	@ResponseStatus(code = HttpStatus.OK)
 	@DeleteMapping("/delete/{id}")
-	public ReportDetails deleteReport(@PathVariable("id") @Min(1) int id) throws ReportNotFoundException
-	{
-		System.out.println("Deleting Report");
-		System.out.println("Report Id:"+id);
+	public ReportDetails deleteReport(@PathVariable("id") @Min(1) int id) throws ReportNotFoundException {
 		Report report = rService.deleteReport(id);
 		ReportDetails rep = reportUtil.toDetailsReport(report);
 		return rep;
-		
+
 	}
-	
+
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/{id}")
-	public ReportDetails viewReport(@PathVariable("id") @Min(1) int id) throws ReportNotFoundException
-	{
-		System.out.println("View Report");
-		System.out.println("Report Id:"+id);
+	public ReportDetails viewReport(@PathVariable("id") @Min(1) int id) throws ReportNotFoundException {
 		Report report = rService.viewReport(id);
 		ReportDetails rep = reportUtil.toDetailsReport(report);
 		return rep;
 	}
-	
+
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/all")
-	public List<ReportDetails> viewAllReport()
-	{
-		System.out.println("View All Report");
+	public List<ReportDetails> viewAllReports() {
 		List<Report> reports = rService.viewAllReports();
-		System.out.println("Report:"+reports);
 		List<ReportDetails> rep = reportUtil.toDetailsReport(reports);
 		return rep;
 	}
