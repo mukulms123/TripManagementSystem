@@ -4,9 +4,12 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.tms.dto.UserDetails;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.User;
 import com.cg.tms.exceptions.CustomerNotFoundException;
@@ -16,6 +19,9 @@ import com.cg.tms.repository.IUserRepository;
 @Service
 @Transactional
 public class IUserServiceImpl implements IUserService {
+	
+	//For Logging
+	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
 
 	@Autowired
 	private IUserRepository uRep;
@@ -29,6 +35,8 @@ public class IUserServiceImpl implements IUserService {
 		Customer newCust = cRep.save(cust);
 		user.setUserId(newCust.getCustomerId());
 		User newUser = uRep.save(user);
+		logger.info("********Adding User by Id: "+user.getUserId()+"********");
+		logger.info("********Adding Customer by Id: "+cust.getCustomerId()+"********");
 		return newUser;
 	}
 
@@ -44,12 +52,24 @@ public class IUserServiceImpl implements IUserService {
 		{
 			throw new CustomerNotFoundException("Customer Not Found at Id: "+user.getUserId());
 		}
+		logger.info("********SignIn by Id and Password: "+user.getUserId()+"  "+user.getPassword()+"********");
 		return newUser;
 	}
 
 	@Override
-	public String signOut(User user) {
-		return "Thank you!! Have a Good Day!!";
+	public User signOut(User user) {
+		Optional<User> opt = uRep.findById(user.getUserId());
+		if(!opt.isPresent())
+		{
+			throw new CustomerNotFoundException("Customer Not Found at Id: "+user.getUserId());
+		}
+		User newUser = opt.get();
+		if((newUser.getUserId() != user.getUserId() && (newUser.getPassword().contentEquals(user.getPassword()))))
+		{
+			throw new CustomerNotFoundException("Customer Not Found at Id: "+user.getUserId());
+		}
+		logger.info("********SignOut by Id and Password: "+user.getUserId()+"  "+user.getPassword()+"********");
+		return newUser;
 	}
 
 }

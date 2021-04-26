@@ -14,12 +14,19 @@ import com.cg.tms.entities.User;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.exceptions.PackageNotFoundException;
 import com.cg.tms.repository.ICustomerRepository;
+import com.cg.tms.repository.IPackageRepository;
 import com.cg.tms.repository.IRouteRepository;
 import com.cg.tms.repository.IUserRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 @Transactional
 public class ICustomerServiceImpl implements ICustomerService{
+	
+	//For Logging
+	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
 
 	@Autowired
 	private ICustomerRepository cRep;
@@ -28,7 +35,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 	private IRouteRepository rRep;
 	
 	@Autowired
-	private IPackageService pService;
+	private IPackageRepository pRep;
 	
 	@Autowired
 	private IUserRepository uRep;
@@ -40,6 +47,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 		User user = new User();
 		user.addCustomer(cust);
 		User newUser = uRep.save(user);
+		logger.info("********Adding Customer by id: "+cust.getCustomerId()+"********");
         return cust;
 	}
 
@@ -51,6 +59,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 			throw new CustomerNotFoundException("Customer Not Found at Id: "+customer.getCustomerId());
 		}
 		Customer cust = cRep.save(customer);
+		logger.info("********Updating Customer by id: "+customer.getCustomerId()+"********");
 		return cust;
 
 	}
@@ -63,6 +72,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 			throw new CustomerNotFoundException("Customer Not found at Id: " + customer.getCustomerId());
 		}
 		cRep.delete(customer);
+		logger.info("********Deleting Customer by id: "+customer.getCustomerId()+"********");
 		return customer;
 	}
 
@@ -73,32 +83,33 @@ public class ICustomerServiceImpl implements ICustomerService{
 			throw new CustomerNotFoundException("Customer Not Found at Id: "+custId);
 		}
 		Customer cust = opt.get();
+		logger.info("********View Customer by id: "+custId+"********");
 		return cust;
 	}
 
 	@Override
 	public Customer viewCustomerList(int id) throws PackageNotFoundException,CustomerNotFoundException {
-		 	Package1 pack = pService.searchPackage(id);
+		 	Optional<Package1> opt = pRep.findById(id);
+		 	if(!opt.isPresent())
+		 	{
+		 		throw new PackageNotFoundException("Package is not Found at Id:"+id);
+		 	}
+		 	Package1 pack = opt.get();
 		 	int packId = cRep.findByPackage(pack);
-	        //List<Booking> booking = bRep.findByPackId(id);
-	        //List<Integer> ids = new ArrayList<>();
-	        //for (Booking booking2 : booking) {
-	        //	System.out.println(booking2.getUserId());
-			//}
-	        
-	        //List<Integer> custIds = cRep.findByPack(id);
-	        Optional<Customer> opt=cRep.findById(packId);
-	        if(!opt.isPresent())
+	        Optional<Customer> opt1=cRep.findById(packId);
+	        if(!opt1.isPresent())
 	        {
 	        	throw new CustomerNotFoundException("Customer Not Found at Package Id: "+id);
 	        }
-	        Customer cust = opt.get();
+	        Customer cust = opt1.get();
+	        logger.info("********View Customer by Package id: "+id+"********");
 	        return cust;
 	}
 
 	@Override
 	public List<Customer> viewAllCustomers() {
 		List<Customer> customers = cRep.findAll();
+		logger.info("********Viewing all Customer: "+customers+"********");
 		return customers;
 	}
 

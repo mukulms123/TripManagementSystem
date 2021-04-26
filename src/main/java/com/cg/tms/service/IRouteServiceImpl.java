@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.checkerframework.checker.nullness.Opt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ import com.cg.tms.repository.IRouteRepository;
 @Service
 @Transactional
 public class IRouteServiceImpl implements IRouteService {
+	
+	//For Logging
+	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
 
 	@Autowired
 	private IRouteRepository rRep;
@@ -24,6 +29,7 @@ public class IRouteServiceImpl implements IRouteService {
 	@Override
 	public Route addRoute(Route route) {
 		Route rout = rRep.save(route);
+		logger.info("********Adding Route by Id: "+route.getRouteId()+"********");
 		return rout;
 	}
 
@@ -37,6 +43,7 @@ public class IRouteServiceImpl implements IRouteService {
 		newRoute.setRouteFrom(route.getRouteFrom());
 		newRoute.setRouteTo(route.getRouteTo());
 		newRoute = rRep.save(route);
+		logger.info("********Updating Route by Id: "+route.getRouteId()+"********");
 		return newRoute;
 	}
 
@@ -48,6 +55,7 @@ public class IRouteServiceImpl implements IRouteService {
 			throw new RouteNotFoundException("Route Not Found at Id: "+routeId);
 		}
 		rRep.delete(newRoute);
+		logger.info("********Deleting Route by Id: "+routeId+"********");
 		return newRoute;
 	}
 
@@ -58,12 +66,14 @@ public class IRouteServiceImpl implements IRouteService {
 			throw new RouteNotFoundException("Route Not Found at Id:" + routeId);
 		}
 		Route newRoute = opt.get();
+		logger.info("********Viewing Route by Id: "+routeId+"********");
 		return newRoute;
 	}
 
 	@Override
 	public List<Route> viewRouteList() {
 		List<Route> routeList = rRep.findAll();
+		logger.info("********Viewing all Routes: "+routeList+"********");
 		return routeList;
 	}
 

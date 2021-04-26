@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +21,17 @@ import com.cg.tms.repository.IReportRepository;
 @Service
 @Transactional
 public class IReportServiceImpl implements IReportService {
+	
+	//For Logging
+	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
+	
 	@Autowired
 	private IReportRepository rRep;
 	
 	@Override
 	public Report addReport(Report report) {
 		Report rept = rRep.save(report);
+		logger.info("********Adding Report by Id: "+rept.getReportId()+"********");
 		return rept;
 	}
 
@@ -32,6 +39,7 @@ public class IReportServiceImpl implements IReportService {
 	public Report deleteReport(int reportId) throws ReportNotFoundException {
 		Report report = viewReport(reportId);
 		rRep.delete(report);
+		logger.info("********Deleting Report by Id: "+reportId+"********");
 		return report;
 	}
 
@@ -42,12 +50,14 @@ public class IReportServiceImpl implements IReportService {
 			throw new ReportNotFoundException("Report Not Found at Id:" + reportId);
 		}
 		Report report = optional.get();
+		logger.info("********Viewing Report by Id: "+report.getReportId()+"********");
 		return report;
 	}
 
 	@Override
 	public List<Report> viewAllReports() {
 		List<Report> reports = rRep.findAll();
+		logger.info("********Viewing all Reports: "+reports+"********");
 		return reports;
 	}
 

@@ -62,12 +62,13 @@ public class UserController {
 	
 	@ResponseStatus(code = HttpStatus.OK)
 	@PostMapping("/signout")
-	public void userSignOut(@RequestBody @Valid UserRequest requestData) 
+	public UserDetails userSignOut(@RequestBody @Valid UserRequest requestData) 
 	{
 		User user = new User(requestData.getUserId(),requestData.getUserType(),requestData.getPassword());
 		user.setCustomer(requestData.getCustomer());
-		String logout = uService.signOut(user);
-		System.out.println(logout);
-		System.exit(0);		
+		User userFound = uService.signOut(user);
+		System.out.println("logout");
+		UserDetails userDetails = userUtil.toDetailsUser(userFound);
+		return userDetails;		
 	}
 }

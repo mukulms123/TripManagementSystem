@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +18,16 @@ import com.cg.tms.repository.IPackageRepository;
 @Transactional
 public class IPackageServiceImpl implements IPackageService {
 	
+	//For Logging
+	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
+	
 	@Autowired
 	private IPackageRepository pRep;
 	
 	@Override
 	public Package1 addPackage(Package1 pack) {
 		Package1 pack1 = pRep.save(pack);
+		logger.info("********Adding Package by Id: "+pack1.getPackageId()+"********");
 		return pack1;
 	}
 
@@ -29,6 +35,7 @@ public class IPackageServiceImpl implements IPackageService {
 	public Package1 deletePackage(int packageId) throws PackageNotFoundException {
 		Package1 pack = searchPackage(packageId);
         pRep.deleteById(packageId);
+        logger.info("********Deleting Package by Id: "+pack.getPackageId()+"********");
         return pack;
 	}
 
@@ -40,12 +47,14 @@ public class IPackageServiceImpl implements IPackageService {
 			throw new PackageNotFoundException("Package Not Found at Package Id:"+packageId);
 		}
 		Package1 pack = opt.get();
+		logger.info("********Searching Package by Id: "+pack.getPackageId()+"********");
 		return pack;
 	}
 
 	@Override
 	public List<Package1> viewAllPackages() {
 		List<Package1> packs = pRep.findAll();
+		logger.info("********Viewing All Packages: "+packs+"********");
 		return packs;
 	}
 
