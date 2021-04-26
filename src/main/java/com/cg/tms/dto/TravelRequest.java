@@ -1,6 +1,7 @@
 package com.cg.tms.dto;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.cg.tms.entities.Bus;
 
@@ -13,7 +14,7 @@ public class TravelRequest {
 	private String agentName;
 	@NotNull
 	private String address;
-	@NotNull
+	@NotNull @Size(min = 10,max=10)
 	private String contact;
 
 	private Bus bus;

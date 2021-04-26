@@ -20,12 +20,12 @@ public class Hotel {
 	private String address;
 	private double rent;
 	private String status;
-	
+
 	@OneToOne
 	@JoinColumn(name = "id")
 	private Package1 pack;
-	
-	//Constructors with id and package(not added yet)
+
+	// Constructors with id and package
 	public Hotel(String hotelName, String hotelType, String hotelDescription, String address, double rent,
 			String status) {
 		this.hotelName = hotelName;
@@ -36,7 +36,7 @@ public class Hotel {
 		this.status = status;
 	}
 
-	//toString with id
+	// toString with id
 	@Override
 	public String toString() {
 		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", hotelType=" + hotelType
@@ -44,7 +44,7 @@ public class Hotel {
 				+ status + "]";
 	}
 
-	//constructor with Package
+	// constructor with Package
 	public Hotel(int hotelId, String hotelName, String hotelType, String hotelDescription, String address, double rent,
 			String status) {
 		this.hotelId = hotelId;
@@ -59,7 +59,7 @@ public class Hotel {
 	public Hotel() {
 	}
 
-	//Getters and Setters
+	// Getters and Setters
 	public int getHotelId() {
 		return hotelId;
 	}
@@ -116,7 +116,7 @@ public class Hotel {
 		this.status = status;
 	}
 
-	//Getters and Setters for package
+	// Getters and Setters for package
 	public Package1 getPack() {
 		return pack;
 	}
@@ -124,11 +124,5 @@ public class Hotel {
 	public void setPack(Package1 pack) {
 		this.pack = pack;
 	}
-	
-	
-	
-	
-	
 
-	
 }

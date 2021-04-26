@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "package")
 public class Package1 {
-	
+
 	@Id
 	@GeneratedValue
 	private int packageId;
@@ -19,20 +19,21 @@ public class Package1 {
 	private String packageDescription;
 	private String packageType;
 	private double packageCost;
-	
+
 	@OneToOne
 	@JoinColumn(name = "payment_id")
-	private  PaymentDetails  payment;
+	private PaymentDetails payment;
 	@OneToOne
 	@JoinColumn(name = "ticket_id")
 	private TicketDetails ticket;
-	@OneToOne(cascade=CascadeType.ALL)
+
+	@OneToOne(cascade = CascadeType.ALL)
 	private Hotel hotel;
-	
-	@OneToOne(cascade=CascadeType.ALL)
+
+	@OneToOne(cascade = CascadeType.ALL)
 	private Booking booking;
 
-	//Getter and setter for Payment
+	// Getter and setter for Payment
 	public PaymentDetails getPayment() {
 		return payment;
 	}
@@ -40,8 +41,8 @@ public class Package1 {
 	public void setPayment(PaymentDetails payment) {
 		this.payment = payment;
 	}
-	
-	//Getters and Setters for hotel
+
+	// Getters and Setters for hotel
 	public Hotel getHotel() {
 		return hotel;
 	}
@@ -50,7 +51,7 @@ public class Package1 {
 		this.hotel = hotel;
 	}
 
-	//constructor without id
+	// constructor without id
 	public Package1(String packageName, String packageDescription, String packageType, double packageCost) {
 		this.packageName = packageName;
 		this.packageDescription = packageDescription;
@@ -65,10 +66,10 @@ public class Package1 {
 	public String toString() {
 		return "Package [packageId=" + packageId + ", packageName=" + packageName + ", packageDescription="
 				+ packageDescription + ", packageType=" + packageType + ", packageCost=" + packageCost + ", Booking="
-				 + booking + "]";
+				+ booking + "]";
 	}
 
-	//Getters and Setters 
+	// Getters and Setters
 	public int getPackageId() {
 		return packageId;
 	}
@@ -108,8 +109,8 @@ public class Package1 {
 	public void setPackageCost(double packageCost) {
 		this.packageCost = packageCost;
 	}
-	
-	//Getter and Setters for ticket
+
+	// Getter and Setters for ticket
 	public TicketDetails getTicket() {
 		return ticket;
 	}
@@ -118,7 +119,7 @@ public class Package1 {
 		this.ticket = ticket;
 	}
 
-	//Getters and Setters for booking
+	// Getters and Setters for booking
 	public Booking getBooking() {
 		return booking;
 	}
@@ -126,19 +127,17 @@ public class Package1 {
 	public void setBooking(Booking booking) {
 		this.booking = booking;
 	}
-	 
-	//addBooking method
-	public void addBooking(Booking booking)
-	{
+
+	// addBooking method
+	public void addBooking(Booking booking) {
 		booking.setPack(this);
-		//Made changes here     111111
+		// Made changes here 111111
 		booking.setPackId(this.packageId);
 		this.setBooking(booking);
 	}
-	
-	//To add Hotel method
-	public void addHotel(Hotel hot)
-	{
+
+	// To add Hotel method
+	public void addHotel(Hotel hot) {
 		hot.setPack(this);
 		this.setHotel(hot);
 	}
@@ -146,7 +145,5 @@ public class Package1 {
 	public Package1(int packageId) {
 		this.packageId = packageId;
 	}
-	
-	
-	
+
 }

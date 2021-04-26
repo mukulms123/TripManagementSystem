@@ -26,7 +26,7 @@ import com.cg.tms.service.ITravelsService;
 import com.cg.tms.util.TravelUtil;
 
 @RestController
-@RequestMapping("/travel")
+@RequestMapping("/travels")
 @Validated
 public class TravelController {
 

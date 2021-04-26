@@ -7,17 +7,14 @@ import javax.validation.constraints.NotNull;
 
 import com.cg.tms.entities.Customer;
 
-public class createFeedbackRequest {
+public class FeedbackRequest {
 
 	private Customer customer;
 	@NotNull
-	@NotBlank
 	private String feedback;
 	@NotNull
-	@NotBlank
 	private int rating;
 	@NotNull
-	@NotBlank
 	private LocalDate submitDate;
 
 	// Getters and Setters

@@ -74,8 +74,6 @@ dependencies {
  	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
 	
-	// https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
-	testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.21.0'
 	
 	
 }

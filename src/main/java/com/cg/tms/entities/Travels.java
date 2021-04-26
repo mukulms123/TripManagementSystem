@@ -11,28 +11,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "travels")
 public class Travels {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int travelsId;
 	private String travelsName;
-	private String  agentName;
-	private String  address;
-	private String  contact;
-	
-	//Added this on my own 
+	private String agentName;
+	private String address;
+	private String contact;
+
+	// Added this on my own
 	@OneToOne(mappedBy = "travel", cascade = CascadeType.ALL)
 	private Bus bus;
-	
-	//Constructor without Id
+
+	// Constructor without Id
 	public Travels(String travelsName, String agentName, String address, String contact) {
 		this.travelsName = travelsName;
 		this.agentName = agentName;
 		this.address = address;
 		this.contact = contact;
 	}
-	
-	//Constructor with id
+
+	// Constructor with id
 	public Travels(int travelsId, String travelsName, String agentName, String address, String contact) {
 		this.travelsId = travelsId;
 		this.travelsName = travelsName;
@@ -41,11 +41,11 @@ public class Travels {
 		this.contact = contact;
 	}
 
-	//default constructor
+	// default constructor
 	public Travels() {
 	}
 
-	//Getters and Setters
+	// Getters and Setters
 	public int getTravelsId() {
 		return travelsId;
 	}
@@ -86,7 +86,7 @@ public class Travels {
 		this.contact = contact;
 	}
 
-	//Getter and Setter for Bus
+	// Getter and Setter for Bus
 	public Bus getBus() {
 		return bus;
 	}
@@ -94,21 +94,19 @@ public class Travels {
 	public void setBus(Bus bus) {
 		this.bus = bus;
 	}
-	
-	//Method to add Bus
-	public void addBus(Bus bus)
-	{
+
+	// Method to add Bus
+	public void addBus(Bus bus) {
 		bus.setTravel(this);
 		this.setBus(bus);
-		
+
 	}
 
-	//ToString with Bus
+	// ToString with Bus
 	@Override
 	public String toString() {
 		return "Travels [travelsId=" + travelsId + ", travelsName=" + travelsName + ", agentName=" + agentName
 				+ ", address=" + address + ", contact=" + contact + ", bus=" + bus + "]";
 	}
-	
-	
+
 }

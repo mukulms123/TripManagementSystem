@@ -10,7 +10,7 @@ public class ReportRequest {
 	@NotNull
 	private String reportType;
 
-	//Getters and Setters
+	// Getters and Setters
 	public int getReportId() {
 		return reportId;
 	}

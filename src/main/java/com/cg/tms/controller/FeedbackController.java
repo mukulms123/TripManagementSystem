@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.tms.dto.FeedbackDetails;
-import com.cg.tms.dto.createFeedbackRequest;
+import com.cg.tms.dto.FeedbackRequest;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Feedback;
 import com.cg.tms.exceptions.CustomerNotFoundException;
@@ -46,7 +46,7 @@ public class FeedbackController {
 	// Used for adding feedback
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("/add")
-	public FeedbackDetails addFeedback(@RequestBody @Valid createFeedbackRequest requestData) {
+	public FeedbackDetails addFeedback(@RequestBody @Valid FeedbackRequest requestData) {
 		Feedback feed = new Feedback(requestData.getFeedback(), requestData.getRating(), requestData.getSubmitDate());
 		Customer customer = requestData.getCustomer();
 		if (customer != null) {
@@ -61,7 +61,7 @@ public class FeedbackController {
 	// Used for adding feedback for customer ID
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("/add/{id}")
-	public FeedbackDetails addFeedback(@RequestBody @Valid createFeedbackRequest requestData,
+	public FeedbackDetails addFeedback(@RequestBody @Valid FeedbackRequest requestData,
 			@PathVariable("id") @Min(1) int id) {
 		Feedback feed = new Feedback(requestData.getFeedback(), requestData.getRating(), requestData.getSubmitDate());
 		Customer customer = new Customer(id);

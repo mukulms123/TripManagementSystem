@@ -2,7 +2,6 @@ package com.cg.tms.entities;
 
 import java.util.Objects;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,15 +19,15 @@ public class PaymentDetails {
 	private double netAmount;
 	private String paymentStatus;
 	private int userId;
-	
+
 	@OneToOne
 	private Package1 pack;
-	
+
 	public PaymentDetails() {
 
 	}
-	
-	//Constructor without Id and package
+
+	// Constructor without Id and package
 	public PaymentDetails(String paymentMode, String bankName, long cardNo, double netAmount, String paymentStatus,
 			int userId) {
 		this.paymentMode = paymentMode;
@@ -117,7 +116,7 @@ public class PaymentDetails {
 				+ userId + "]";
 	}
 
-	//Getter and Setter for package
+	// Getter and Setter for package
 	public Package1 getPack() {
 		return pack;
 	}
@@ -125,28 +124,11 @@ public class PaymentDetails {
 	public void setPack(Package1 pack) {
 		this.pack = pack;
 	}
-	
-	//add method for Package Details
-	public void addPackage(Package1 pack)
-	{
+
+	// add method for Package Details
+	public void addPackage(Package1 pack) {
 		pack.setPayment(this);
 		this.setPack(pack);
 	}
-	
-	@Override
-	public boolean equals(Object obj) {
-
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PaymentDetails other = (PaymentDetails) obj;
-		if (paymentId != other.paymentId)
-			return false;
-		return true;
-	}
 
 }
-

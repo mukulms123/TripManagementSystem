@@ -2,6 +2,7 @@ package com.cg.tms.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,39 +10,35 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name = "feedback")
 public class Feedback {
-	
+
 	@Id
 	@GeneratedValue
 	private int feedbackId;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	private String feedback;
-	private  int rating;
+	private int rating;
 	private LocalDate submitDate;
-	
-	//toString without the Customer to avoid going to infinite loop
+
+	// toString without the Customer to avoid going to infinite loop
 	@Override
 	public String toString() {
-		return "Feedback [feedback=" + feedback + ", rating="
-				+ rating + ", submitDate=" + submitDate + "]";
+		return "Feedback [feedback=" + feedback + ", rating=" + rating + ", submitDate=" + submitDate + "]";
 	}
-	
-	//constructor without customer
+
+	// constructor without customer
 	public Feedback(int feedbackId, String feedback, int rating, LocalDate submitDate) {
 		this.feedbackId = feedbackId;
 		this.feedback = feedback;
 		this.rating = rating;
 		this.submitDate = submitDate;
 	}
-	
-	//constructor without Customer and Id		:		since the id is auto generated and return for service object will be feedback id
-	// Add customer maybe
+
+	// constructor without Customer and Id
 	public Feedback(String feedback, int rating, LocalDate submitDate) {
 		this.feedback = feedback;
 		this.rating = rating;

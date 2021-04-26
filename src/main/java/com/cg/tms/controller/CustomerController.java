@@ -103,7 +103,7 @@ public class CustomerController {
 
 	// Used to view all customers using package ID
 	@ResponseStatus(code = HttpStatus.OK)
-	@GetMapping("/view/all/{id}")
+	@GetMapping("/view/pack/{id}")
 	public CustomerDetails viewCustomersList(@PathVariable("id") int id)
 			throws PackageNotFoundException, CustomerNotFoundException {
 		Customer cust = cService.viewCustomerList(id);

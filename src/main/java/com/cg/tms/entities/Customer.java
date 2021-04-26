@@ -131,6 +131,5 @@ public class Customer {
 				+ customerPassword + ", address=" + address + ", mobileNo=" + mobileNo + ", email=" + email
 				+ ", feedback=" + feedbacks + "]";
 	}
-	
 
 }

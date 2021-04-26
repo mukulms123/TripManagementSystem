@@ -10,28 +10,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "report")
 public class Report {
-	
+
 	@Id
 	@GeneratedValue
 	private int reportId;
 	private String reportName;
 	private String reportType;
-	
-	//constructor without admin
+
+	// constructor 
 	public Report(int reportId, String reportName, String reportType) {
 		this.reportId = reportId;
 		this.reportName = reportName;
 		this.reportType = reportType;
 	}
 
-	//Constructor without Admin and Id
+	// Constructor without Id
 	public Report(String reportName, String reportType) {
 		super();
 		this.reportName = reportName;
 		this.reportType = reportType;
 	}
 
-	//Default Constructor
+	// Default Constructor
 	public Report() {
 	}
 
@@ -63,12 +63,7 @@ public class Report {
 	public String toString() {
 		return "Report [reportId=" + reportId + ", reportName=" + reportName + ", reportType=" + reportType + "]\n";
 	}
-	
-	//Generate Getters and Setters for admin
-	
-	
-	
-	
-	
+
+	// Generate Getters and Setters for admin
 
 }

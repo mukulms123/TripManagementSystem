@@ -1,10 +1,12 @@
 package com.cg.tms.controller;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,9 +39,10 @@ public class UserController {
 
 	// Used for User Sign In
 	@ResponseStatus(code = HttpStatus.OK)
-	@PostMapping("/signin")
-	public String userSignIn(@RequestBody @Valid UserRequest requestData) throws CustomerNotFoundException {
+	@PostMapping("/signin/{id}")
+	public String userSignIn(@RequestBody @Valid UserRequest requestData,@PathVariable("id") @Min(1) int id) throws CustomerNotFoundException {
 		User user = new User(requestData.getUserType(), requestData.getPassword());
+		user.setUserId(id);
 		User newUser = uService.signIn(user);
 		return "Welcome," + newUser.getUserId();
 	}
@@ -58,11 +61,10 @@ public class UserController {
 	// Used for Sign Out
 	@ResponseStatus(code = HttpStatus.OK)
 	@PostMapping("/signout")
-	public UserDetails userSignOut(@RequestBody @Valid UserRequest requestData) {
+	public String userSignOut(@RequestBody @Valid UserRequest requestData) {
 		User user = new User(requestData.getUserId(), requestData.getUserType(), requestData.getPassword());
 		user.setCustomer(requestData.getCustomer());
 		User userFound = uService.signOut(user);
-		UserDetails userDetails = userUtil.toDetailsUser(userFound);
-		return userDetails;
+		return "Bye," + userFound.getUserId() + "\nThank You for Using Us!!";
 	}
 }

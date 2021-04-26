@@ -12,7 +12,7 @@ public interface IRouteService {
 	public  Route  updateRoute(Route route) throws RouteNotFoundException;
 	public  Route   removeRoute(int routeId) throws RouteNotFoundException;
 	public  Route    searchRoute(int routeId) throws RouteNotFoundException;
-	public  List<Route> viewRouteList();
+	public  List<Route> viewRouteList() ;
 	
 	
 	

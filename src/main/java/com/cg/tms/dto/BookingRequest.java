@@ -8,48 +8,62 @@ import javax.validation.constraints.Size;
 
 public class BookingRequest {
 
-	@NotNull @Size(min = 2, max = 50) @NotBlank
+	@NotNull
+	@Size(min = 2, max = 50)
+	@NotBlank
 	private String bookingType;
-	@NotNull @Size(min = 2, max = 50) @NotBlank
+	@NotNull
+	@Size(min = 2, max = 50)
+	@NotBlank
 	private String description;
-	@NotNull @Size(min = 2, max = 50) @NotBlank
+	@NotNull
+	@Size(min = 2, max = 50)
+	@NotBlank
 	private String bookingTitle;
-	@NotNull @NotBlank
-	private  LocalDate bookingDate;
-	@NotNull @NotBlank
-	private  int userId;
-	@NotNull @NotBlank
+	@NotNull
+	private LocalDate bookingDate;
+	@NotNull
+	private int userId;
+	@NotNull
 	private int packageId;
-	
-	//Getters and Setters
+
+	// Getters and Setters
 	public String getBookingType() {
 		return bookingType;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public String getBookingTitle() {
 		return bookingTitle;
 	}
+
 	public LocalDate getBookingDate() {
 		return bookingDate;
 	}
+
 	public void setBookingType(String bookingType) {
 		this.bookingType = bookingType;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public void setBookingTitle(String bookingTitle) {
 		this.bookingTitle = bookingTitle;
 	}
+
 	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
-	
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
@@ -59,15 +73,17 @@ public class BookingRequest {
 	public String getBookingId() {
 		return bookingId;
 	}
+
 	public int getPackageId() {
 		return packageId;
 	}
+
 	public void setPackageId(int packageId) {
 		this.packageId = packageId;
 	}
+
 	public void setBookingId(String bookingId) {
 		this.bookingId = bookingId;
 	}
-	
-		
+
 }

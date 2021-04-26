@@ -1,5 +1,6 @@
 package com.cg.tms.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,7 +14,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.cg.tms.entities.Booking;
 import com.cg.tms.entities.Customer;
+import com.cg.tms.entities.Package1;
+import com.cg.tms.exceptions.CustomerNotFoundException;
+import com.cg.tms.exceptions.PackageNotFoundException;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -66,5 +71,20 @@ public class ICustomerServiceImplTest {
 		em.persist(cust);
 		List<Customer> custFound = cService.viewAllCustomers();
 		Assertions.assertNotNull(custFound);
+	}
+	
+	@Test
+	public void viewCustomerList() throws CustomerNotFoundException, PackageNotFoundException {
+		Customer cust = new Customer("Nandita", "nan123", "delhi", "9810859887", "mail2nanditarao@gmail.com");
+		em.persist(cust);
+		Booking book = new Booking("Business class", "Flying first class", "Business Class", LocalDate.now(),
+				cust.getCustomerId());
+		em.persist(book);
+		Package1 pack = new Package1("package1", "luxury package", "luxury", 7080.9);
+		pack.addBooking(book);
+		em.persist(pack);
+		
+		Customer custFound = cService.viewCustomerList(pack.getPackageId());
+		Assertions.assertEquals(custFound.getCustomerId(), custFound.getCustomerId());
 	}
 }
