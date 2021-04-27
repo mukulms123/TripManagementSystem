@@ -85,6 +85,6 @@ public class ICustomerServiceImplTest {
 		em.persist(pack);
 		
 		Customer custFound = cService.viewCustomerList(pack.getPackageId());
-		Assertions.assertEquals(custFound.getCustomerId(), custFound.getCustomerId());
+		Assertions.assertEquals(custFound.getCustomerName(), custFound.getCustomerName());
 	}
 }
