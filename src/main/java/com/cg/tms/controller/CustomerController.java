@@ -53,7 +53,7 @@ public class CustomerController {
 	public CustomerDetails addCustomer(@RequestBody @Valid createCustomerRequest requestData) {
 		Customer newCustomer = new Customer(requestData.getCustomerName(), requestData.getCustomerPassword(),
 				requestData.getAddress(), requestData.getMobileNo(), requestData.getEmail());
-		Set<Feedback> feedbackSet = requestData.getFeedbacks();
+		Set<Feedback> feedbackSet = requestData.getFeedback();
 		if (feedbackSet != null) {
 			for (Feedback feed : feedbackSet) {
 				newCustomer.addFeedback(feed);

@@ -21,7 +21,7 @@ public class createCustomerRequest {
 	private String mobileNo;
 	@NotBlank 
 	private String email;
-	private Set<Feedback> feedbacks;
+	private Set<Feedback> feedback;
 	private int customerId;
 
 	// Getters and Setters
@@ -65,12 +65,12 @@ public class createCustomerRequest {
 		this.email = email;
 	}
 
-	public Set<Feedback> getFeedbacks() {
-		return feedbacks;
+	public Set<Feedback> getFeedback() {
+		return feedback;
 	}
 
-	public void setFeedbacks(Set<Feedback> feedbacks) {
-		this.feedbacks = feedbacks;
+	public void setFeedbacks(Set<Feedback> feedback) {
+		this.feedback = feedback;
 	}
 
 	public int getCustomerId() {
@@ -89,7 +89,7 @@ public class createCustomerRequest {
 	@Override
 	public String toString() {
 		return "createCustomerRequest [customerName=" + customerName + ", customerPassword=" + customerPassword
-				+ ", address=" + address + ", mobileNo=" + mobileNo + ", email=" + email + ", feedbacks=" + feedbacks
+				+ ", address=" + address + ", mobileNo=" + mobileNo + ", email=" + email + ", feedbacks=" + feedback
 				+ "]";
 	}
 }

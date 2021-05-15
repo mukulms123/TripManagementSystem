@@ -91,23 +91,6 @@ public class Customer {
 		this.email = email;
 	}
 
-	public Set<Feedback> getFeedback() {
-		return feedbacks;
-	}
-
-	public void setFeedback(Set<Feedback> feedback) {
-		this.feedbacks = feedback;
-	}
-
-	public void addFeedback(Feedback feedback) {
-		feedback.setCustomer(this);
-		feedbacks.add(feedback);
-	}
-
-	public Customer(int customerId) {
-		this.customerId = customerId;
-	}
-
 	public Set<Feedback> getFeedbacks() {
 		return feedbacks;
 	}
@@ -115,6 +98,17 @@ public class Customer {
 	public void setFeedbacks(Set<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
 	}
+	
+	public void addFeedback(Feedback feedback)
+	{
+		feedback.setCustomer(this);
+		feedbacks.add(feedback);
+	}
+	
+	public Customer(int customerId) {
+		this.customerId = customerId;
+	}
+
 
 	public User getUser() {
 		return user;
