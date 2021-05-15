@@ -2,6 +2,7 @@ package com.cg.tms.dto;
 
 import javax.validation.constraints.NotNull;
 
+import com.cg.tms.entities.Admin;
 import com.cg.tms.entities.Customer;
 
 public class UserRequest {
@@ -13,6 +14,8 @@ public class UserRequest {
 	private String password;
 
 	private Customer customer;
+	
+	private Admin admin;
 
 	// Getters and Setters
 	public int getUserId() {
@@ -29,6 +32,10 @@ public class UserRequest {
 
 	public Customer getCustomer() {
 		return customer;
+	}
+	
+	public Admin getAdmin() {
+		return admin;
 	}
 
 }

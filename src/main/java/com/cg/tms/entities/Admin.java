@@ -3,6 +3,7 @@ package com.cg.tms.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +17,9 @@ public class Admin {
 	private String password;
 	private String email;
 	private String mobile;
+	
+	@OneToOne
+	private User user;
 
 	public int getAdminId() {
 		return adminId;
@@ -58,7 +62,6 @@ public class Admin {
 	}
 
 	public Admin(String adminName, String password, String email, String mobile) {
-		super();
 		this.adminName = adminName;
 		this.password = password;
 		this.email = email;
@@ -70,5 +73,18 @@ public class Admin {
 		return "Admin [adminId=" + adminId + ", adminName=" + adminName + ", password=" + password + ", email=" + email
 				+ ", mobile=" + mobile + "]";
 	}
+	
+	public User getUser() {
+		return user;
+	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Admin() {
+
+	}
+
+	
 }

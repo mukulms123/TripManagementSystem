@@ -64,6 +64,5 @@ public class Report {
 		return "Report [reportId=" + reportId + ", reportName=" + reportName + ", reportType=" + reportType + "]\n";
 	}
 
-	// Generate Getters and Setters for admin
 
 }

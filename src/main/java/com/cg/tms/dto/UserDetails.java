@@ -1,5 +1,6 @@
 package com.cg.tms.dto;
 
+import com.cg.tms.entities.Admin;
 import com.cg.tms.entities.Customer;
 
 public class UserDetails {
@@ -8,6 +9,7 @@ public class UserDetails {
 	private String userType;
 	private String password;
 	private Customer customer;
+	private Admin admin;
 
 	// Getters and Setters
 	public int getUserId() {
@@ -41,10 +43,17 @@ public class UserDetails {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
 
 	// Constructor
 	public UserDetails(int userId, String userType, String password, Customer customer) {
-		super();
 		this.userId = userId;
 		this.userType = userType;
 		this.password = password;
@@ -52,7 +61,6 @@ public class UserDetails {
 	}
 
 	public UserDetails(int userId, String userType, String password) {
-		super();
 		this.userId = userId;
 		this.userType = userType;
 		this.password = password;

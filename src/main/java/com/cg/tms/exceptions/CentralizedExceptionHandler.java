@@ -49,4 +49,10 @@ public class CentralizedExceptionHandler {
 	public String handleTravelsException(TravelsNotFoundException e) {
 		return e.getMessage();
 	}
+	
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	@ExceptionHandler(UserNotFoundException.class)
+	public String handleUserException(UserNotFoundException e) {
+		return e.getMessage();
+	}
 }

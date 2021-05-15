@@ -19,6 +19,9 @@ public class User {
 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private Customer customer;
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	private Admin admin;
 
 	public int getUserId() {
 		return userId;
@@ -78,5 +81,20 @@ public class User {
 		this.setPassword(customer.getCustomerPassword());
 		this.setUserType("customer");
 	}
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+	
+	public void addAdmin(Admin admin) {
+		this.setUserId(admin.getAdminId());
+		this.setPassword(admin.getPassword());
+		this.setUserType("admin");
+	}
+	
 
 }

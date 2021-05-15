@@ -10,7 +10,13 @@ public class UserUtil {
 	
 	public UserDetails toDetailsUser(User user)
 	{
-		UserDetails userDetails = new UserDetails(user.getUserId(),user.getUserType(),user.getPassword(),user.getCustomer());
+		UserDetails userDetails = new UserDetails(user.getUserId(),user.getUserType(),user.getPassword());
+		if(user.getUserType().equalsIgnoreCase("customer"))
+		{userDetails.setCustomer(user.getCustomer());
+		}
+		else {
+			userDetails.setAdmin(user.getAdmin());
+		}
 		return userDetails;
 	}
 
