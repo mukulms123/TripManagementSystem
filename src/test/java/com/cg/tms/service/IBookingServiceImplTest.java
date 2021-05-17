@@ -16,6 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.cg.tms.entities.Booking;
 import com.cg.tms.entities.Customer;
+import com.cg.tms.entities.Package1;
 import com.cg.tms.exceptions.BookingNotFoundException;
 import com.cg.tms.exceptions.PackageNotFoundException;
 import com.cg.tms.repository.IBookingRepository;
@@ -41,6 +42,9 @@ public class IBookingServiceImplTest {
 		em.persist(cust);
 		Booking book = new Booking("Business class", "Flying first class", "Business Class", LocalDate.now(),
 				cust.getCustomerId());
+		Package1 pack = new Package1("package1","Good package","First Class",345.67);
+		em.persist(pack);
+		book.setPackId(pack.getPackageId());
 		Booking bookFound = bService.makeBooking(book);
 		Assertions.assertEquals(bookFound.getBookingTitle(), book.getBookingTitle());
 	}

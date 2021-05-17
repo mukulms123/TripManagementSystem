@@ -24,7 +24,7 @@ public class Booking {
 	private int packId;
 	private int userId;
 
-	@ManyToOne
+	@OneToOne
 	private Package1 pack;
 
 	public int getBookingId() {

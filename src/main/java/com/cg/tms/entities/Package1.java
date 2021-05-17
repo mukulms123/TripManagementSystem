@@ -31,7 +31,7 @@ public class Package1 {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Hotel hotel;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Booking booking;
 
 	// Getter and setter for Payment
