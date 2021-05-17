@@ -1,5 +1,9 @@
 package com.cg.tms.dto;
 
+import java.util.Set;
+
+import com.cg.tms.entities.Feedback;
+
 public class CustomerDetails {
 
 	private int customerId;
@@ -8,6 +12,8 @@ public class CustomerDetails {
 	private String address;
 	private String mobileNo;
 	private String email;
+	
+	private Set<Feedback> feedback;
 
 	// Constructors
 	public CustomerDetails(int customerId, String customerName, String customerPassword, String address,
@@ -69,5 +75,5 @@ public class CustomerDetails {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
 }
