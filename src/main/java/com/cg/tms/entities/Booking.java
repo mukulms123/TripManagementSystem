@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,7 +24,7 @@ public class Booking {
 	private int packId;
 	private int userId;
 
-	@OneToOne
+	@ManyToOne
 	private Package1 pack;
 
 	public int getBookingId() {

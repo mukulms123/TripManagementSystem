@@ -19,7 +19,7 @@ import com.cg.tms.repository.ITravelsRespository;
 public class ITravelsServiceImpl implements ITravelsService {
 
 	// For Logging
-	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
+	private Logger logger = LoggerFactory.getLogger(ITravelsServiceImpl.class);
 
 	@Autowired
 	private ITravelsRespository tRep;

@@ -22,7 +22,7 @@ import com.cg.tms.repository.IFeedbackRepository;
 public class IFeedbackServiceImpl implements IFeedbackService {
 	
 	//For Logging
-	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
+	private Logger logger = LoggerFactory.getLogger(IFeedbackServiceImpl.class);
 
 	@Autowired
 	private IFeedbackRepository fRep;

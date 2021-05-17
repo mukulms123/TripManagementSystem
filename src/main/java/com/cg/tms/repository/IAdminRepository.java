@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 import com.cg.tms.entities.Admin;
 
 @Repository
-public interface IAdminRepository extends JpaRepository<Admin, Integer>{
-
-}
+public interface IAdminRepository extends JpaRepository<Admin, Integer>{}
