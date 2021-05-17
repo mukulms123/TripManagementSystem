@@ -20,7 +20,7 @@ import com.cg.tms.exceptions.TravelsNotFoundException;
 @DataJpaTest
 @Import(ITravelsServiceImpl.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class ITravelsServiceImplTest {
+public class ITravelsServiceImplTest{
 
 	@Autowired
 	private ITravelsService tService;

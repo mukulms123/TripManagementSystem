@@ -68,6 +68,18 @@ public class IUserServiceImpl implements IUserService {
 		{
 			throw new UserNotFoundException("Password not correct");
 		}
+		if(user.getUserType().equals("customer"))
+		{
+			Optional<Customer> optCust = cRep.findById(user.getUserId()); 
+			Customer cust = optCust.get();
+			newUser.setCustomer(cust);
+		}
+		else
+		{
+			Optional<Admin> optAdmin = aRep.findById(user.getUserId());
+			Admin admin = optAdmin.get();
+			newUser.setAdmin(admin);
+		}
 		logger.info("********SignIn by Id and Password: " + user.getUserId() + "  " + user.getPassword() + "********");
 		return newUser;
 	}
