@@ -21,7 +21,7 @@ import com.cg.tms.repository.IRouteRepository;
 public class IRouteServiceImpl implements IRouteService {
 
 	// For Logging
-	private Logger logger = LoggerFactory.getLogger(IRouteServiceImpl.class);
+	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
 
 	@Autowired
 	private IRouteRepository rRep;

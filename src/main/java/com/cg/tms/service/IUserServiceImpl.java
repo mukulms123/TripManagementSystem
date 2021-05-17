@@ -23,7 +23,7 @@ import com.cg.tms.repository.IUserRepository;
 public class IUserServiceImpl implements IUserService {
 
 	// For Logging
-	private Logger logger = LoggerFactory.getLogger(IUserServiceImpl.class);
+	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
 
 	@Autowired
 	private IUserRepository uRep;

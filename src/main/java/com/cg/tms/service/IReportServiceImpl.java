@@ -22,7 +22,7 @@ import com.cg.tms.repository.IReportRepository;
 public class IReportServiceImpl implements IReportService {
 
 	// For Logging
-	private Logger logger = LoggerFactory.getLogger(IReportServiceImpl.class);
+	private Logger logger = LoggerFactory.getLogger(IBookingServiceImpl.class);
 
 	@Autowired
 	private IReportRepository rRep;

@@ -82,8 +82,10 @@ public class CustomerController {
 	// Used for deleting Customer
 	@ResponseStatus(code = HttpStatus.OK)
 	@DeleteMapping("/delete/{id}")
-	public CustomerDetails deleteCustomer(@PathVariable("id") @Min(1) int customerId) throws CustomerNotFoundException {
-		Customer customer = new Customer();
+	public CustomerDetails deleteCustomer(@RequestBody @Valid deleteCustomerRequest requestData,
+			@PathVariable("id") @Min(1) int customerId) throws CustomerNotFoundException {
+		Customer customer = new Customer(requestData.getCustomerName(), requestData.getCustomerPassword(),
+				requestData.getAddress(), requestData.getMobileNo(), requestData.getEmail());
 		customer.setCustomerId(customerId);
 		Customer cust = cService.deleteCustomer(customer);
 		CustomerDetails customerDetails = customerUtil.toDetailsCustomer(cust);

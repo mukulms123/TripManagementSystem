@@ -17,7 +17,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.cg.tms.entities.Booking;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.exceptions.BookingNotFoundException;
-import com.cg.tms.exceptions.PackageNotFoundException;
 import com.cg.tms.repository.IBookingRepository;
 
 @ExtendWith({ SpringExtension.class })
@@ -36,7 +35,7 @@ public class IBookingServiceImplTest {
 	private EntityManager em;
 
 	@Test
-	public void makeBooking() throws PackageNotFoundException {
+	public void makeBooking() {
 		Customer cust = new Customer("Prabhnoor", "prabh123", "Delhi", "9810859887", "prabhnoor.kaur@gmail.com");
 		em.persist(cust);
 		Booking book = new Booking("Business class", "Flying first class", "Business Class", LocalDate.now(),

@@ -17,7 +17,6 @@ import com.cg.tms.repository.ICustomerRepository;
 import com.cg.tms.repository.IPackageRepository;
 import com.cg.tms.repository.IUserRepository;
 
-import org.checkerframework.checker.nullness.Opt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,10 +62,13 @@ public class ICustomerServiceImpl implements ICustomerService {
 	// Used for Deleting Customer
 	@Override
 	public Customer deleteCustomer(Customer customer) throws CustomerNotFoundException {
-		Customer cust = viewCustomer(customer.getCustomerId());
-		cRep.delete(cust);
-		logger.info("********Deleting Customer by id: " + cust.getCustomerId() + "********");
-		return cust;
+		boolean check = cRep.existsById(customer.getCustomerId());
+		if (!check) {
+			throw new CustomerNotFoundException("Customer Not found at Id: " + customer.getCustomerId());
+		}
+		cRep.delete(customer);
+		logger.info("********Deleting Customer by id: " + customer.getCustomerId() + "********");
+		return customer;
 	}
 
 	// Used to Viewing Customer using Customer ID

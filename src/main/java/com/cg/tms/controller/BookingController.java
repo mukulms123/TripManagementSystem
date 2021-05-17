@@ -21,7 +21,6 @@ import com.cg.tms.dto.BookingDetails;
 import com.cg.tms.dto.BookingRequest;
 import com.cg.tms.entities.Booking;
 import com.cg.tms.exceptions.BookingNotFoundException;
-import com.cg.tms.exceptions.PackageNotFoundException;
 import com.cg.tms.service.IBookingService;
 import com.cg.tms.util.BookingUtil;
 
@@ -46,12 +45,11 @@ public class BookingController {
 	@ResponseStatus(code = HttpStatus.OK)
 	@PostMapping("/add/{id}")
 	public BookingDetails addBooking(@RequestBody @Valid BookingRequest requestData,
-			@PathVariable("id") @Min(1) int id) throws PackageNotFoundException {
+			@PathVariable("id") @Min(1) int id) {
 
 		Booking book = new Booking(requestData.getBookingType(), requestData.getDescription(),
 				requestData.getBookingTitle(), requestData.getBookingDate(), requestData.getUserId());
 		book.setUserId(id);
-		book.setPackId(requestData.getPackageId());
 		Booking booking = bService.makeBooking(book);
 		BookingDetails bookingDetails = bookingUtil.toDetailsBooking(booking);
 		return bookingDetails;
