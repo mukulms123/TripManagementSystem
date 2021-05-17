@@ -77,7 +77,7 @@ public class BookingController {
 	// Used for view all Bookings
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping("/view/all")
-	public List<BookingDetails> viewAllBooking() {
+	public List<BookingDetails> viewBooking() {
 		List<Booking> bookings = bService.viewAllBookings();
 		List<BookingDetails> bookingDetails = bookingUtil.toDetailsBooking(bookings);
 		return bookingDetails;
