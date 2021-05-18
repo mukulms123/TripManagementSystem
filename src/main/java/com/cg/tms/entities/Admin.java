@@ -66,6 +66,7 @@ public class Admin {
 		this.password = password;
 		this.email = email;
 		this.mobile = mobile;
+//		this.adminId = adminId;
 	}
 
 	@Override

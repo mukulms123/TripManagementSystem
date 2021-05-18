@@ -5,6 +5,7 @@ public class ReportDetails {
 	private int reportId;
 	private String reportName;
 	private String reportType;
+	private int adminId;
 
 	// Constructor
 	public ReportDetails(int reportId, String reportName, String reportType) {
@@ -38,5 +39,14 @@ public class ReportDetails {
 	public void setReportType(String reportType) {
 		this.reportType = reportType;
 	}
+
+	public int getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(int adminId) {
+		this.adminId = adminId;
+	}
+	
 
 }

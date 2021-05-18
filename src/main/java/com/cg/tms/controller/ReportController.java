@@ -21,6 +21,7 @@ import com.cg.tms.dto.ReportDetails;
 import com.cg.tms.dto.ReportRequest;
 import com.cg.tms.entities.Report;
 import com.cg.tms.exceptions.ReportNotFoundException;
+import com.cg.tms.exceptions.UserNotFoundException;
 import com.cg.tms.service.IReportService;
 import com.cg.tms.util.ReportUtil;
 
@@ -43,9 +44,11 @@ public class ReportController {
 
 	// Used for adding report
 	@ResponseStatus(code = HttpStatus.OK)
-	@PostMapping("/add")
-	public ReportDetails addReport(@RequestBody @Valid ReportRequest requestData) {
-		Report report = rService.addReport(new Report(requestData.getReportName(), requestData.getReportType()));
+	@PostMapping("/add/{id}")
+	public ReportDetails addReport(@PathVariable("id") @Min(1) int id,@RequestBody @Valid ReportRequest requestData) throws UserNotFoundException {
+		Report repo = new Report(requestData.getReportName(), requestData.getReportType());
+		repo.setAdminId(id);
+		Report report = rService.addReport(repo);
 		ReportDetails rep = reportUtil.toDetailsReport(report);
 		return rep;
 

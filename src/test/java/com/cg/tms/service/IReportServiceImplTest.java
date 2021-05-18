@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.cg.tms.entities.Admin;
 import com.cg.tms.entities.Report;
 import com.cg.tms.exceptions.ReportNotFoundException;
 
@@ -31,6 +32,9 @@ public class IReportServiceImplTest {
 	@Test
 	public void addReport() {
 		Report report = new Report("report1", "summary");
+		Admin admin = new Admin("Nandita","nan123","mail2nanditarao@gmail.com","9810857684");
+		em.persist(admin);
+		report.setAdminId(admin.getAdminId());
 		Report reportFound = rService.addReport(report);
 		Assertions.assertEquals(reportFound.getReportName(), report.getReportName());
 	}

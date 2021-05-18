@@ -15,6 +15,7 @@ public class ReportUtil {
 	public ReportDetails toDetailsReport(Report report)
 	{
 		ReportDetails reportDetails = new ReportDetails(report.getReportId(),report.getReportName(),report.getReportType());
+		reportDetails.setAdminId(report.getAdminId());
 		return reportDetails;
 	}
 

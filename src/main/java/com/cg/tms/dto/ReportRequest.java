@@ -9,6 +9,7 @@ public class ReportRequest {
 	private String reportName;
 	@NotNull
 	private String reportType;
+	private int adminId;
 
 	// Getters and Setters
 	public int getReportId() {
@@ -34,5 +35,15 @@ public class ReportRequest {
 	public void setReportType(String reportType) {
 		this.reportType = reportType;
 	}
+
+	public int getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(int adminId) {
+		this.adminId = adminId;
+	}
+	
+	
 
 }

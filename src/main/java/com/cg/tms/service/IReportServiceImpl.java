@@ -10,10 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.tms.entities.Admin;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Feedback;
 import com.cg.tms.entities.Report;
 import com.cg.tms.exceptions.ReportNotFoundException;
+import com.cg.tms.exceptions.UserNotFoundException;
+import com.cg.tms.repository.IAdminRepository;
 import com.cg.tms.repository.IFeedbackRepository;
 import com.cg.tms.repository.IReportRepository;
 
@@ -27,9 +30,16 @@ public class IReportServiceImpl implements IReportService {
 	@Autowired
 	private IReportRepository rRep;
 
+	@Autowired
+	private IAdminRepository aRep;
+
 	// Used to add Report
 	@Override
-	public Report addReport(Report report) {
+	public Report addReport(Report report) throws UserNotFoundException {
+		Optional<Admin> opt = aRep.findById(report.getAdminId());
+		if (!opt.isPresent()) {
+			throw new UserNotFoundException("Admin Not Found at ID:" + report.getAdminId());
+		}
 		Report rept = rRep.save(report);
 		logger.info("********Adding Report by Id: " + rept.getReportId() + "********");
 		return rept;
