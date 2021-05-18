@@ -2,6 +2,7 @@ package com.cg.tms.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ public class Booking {
 	private int packId;
 	private int userId;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Package1 pack;
 
 	public int getBookingId() {

@@ -27,6 +27,7 @@ public class Customer {
 	private Set<Feedback> feedbacks = new HashSet<>();
 
 	@OneToOne
+	(cascade = CascadeType.ALL)
 	private User user;
 
 	// Parameterized constructor without feedback and Id

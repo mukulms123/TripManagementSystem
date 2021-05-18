@@ -99,14 +99,6 @@ public class Route {
 		this.routeTo = routeTo;
 	}
 
-	public List<Bus> getBuses() {
-		return buses;
-	}
-
-	public void setBuses(List<Bus> buses) {
-		this.buses = buses;
-	}
-
 	public LocalDateTime getDepartureTime() {
 		return departureTime;
 	}
@@ -160,4 +152,13 @@ public class Route {
 		ticketDetails.setRoute(this);
 		this.setTicketDetails(ticketDetails);
 	}
+
+	public List<Bus> getBuses() {
+		return buses;
+	}
+
+	public void setBuses(List<Bus> buses) {
+		this.buses = buses;
+	}
+	
 }
