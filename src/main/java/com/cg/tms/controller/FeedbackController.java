@@ -22,6 +22,7 @@ import com.cg.tms.entities.Customer;
 import com.cg.tms.entities.Feedback;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.exceptions.FeedbackNotFoundException;
+import com.cg.tms.service.ICustomerService;
 import com.cg.tms.service.IFeedbackService;
 import com.cg.tms.util.FeedbackUtil;
 
@@ -32,6 +33,9 @@ public class FeedbackController {
 
 	@Autowired
 	private IFeedbackService fService;
+	
+	@Autowired
+	private ICustomerService  cService;
 
 	@Autowired
 	private FeedbackUtil feedbackUtil;
@@ -64,7 +68,7 @@ public class FeedbackController {
 	public FeedbackDetails addFeedback(@RequestBody @Valid FeedbackRequest requestData,
 			@PathVariable("id") @Min(1) int id) {
 		Feedback feed = new Feedback(requestData.getFeedback(), requestData.getRating(), requestData.getSubmitDate());
-		Customer customer = new Customer(id);
+		Customer customer = cService.viewCustomer(id);
 		feed.setCustomer(customer);
 		Feedback newFeedback = fService.addFeedback(feed);
 		FeedbackDetails details = feedbackUtil.toDetailsFeedback(newFeedback);
