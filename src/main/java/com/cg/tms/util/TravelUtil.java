@@ -10,14 +10,18 @@ import com.cg.tms.dto.TravelDetails;
 import com.cg.tms.entities.Bus;
 import com.cg.tms.entities.Travels;
 
-
-
 @Component
 public class TravelUtil {
 
 	public TravelDetails toTravelsDetail(Travels travel) {
-		TravelDetails travelDetails = new TravelDetails(travel.getTravelsId(),travel.getTravelsName(),travel.getAgentName(),travel.getAddress(),travel.getContact());
-
+		TravelDetails travelDetails = new TravelDetails(travel.getTravelsId(), travel.getTravelsName(),
+				travel.getAgentName(), travel.getAddress(), travel.getContact());
+		Bus bus = travel.getBus();
+		if (bus != null) {
+			travelDetails.setBusId(bus.getBusId());
+		} else {
+			travelDetails.setBusId(0);
+		}
 		return travelDetails;
 	}
 

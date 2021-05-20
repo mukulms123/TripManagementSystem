@@ -19,6 +19,9 @@ public class Bus {
 	@OneToOne
 	@JoinColumn(name = "travel_id")
 	private Travels travel;
+	
+	public Bus() {
+	}
 
 	// Constructor without Id and Travel
 	public Bus(String busType, String busNumber, int capacity) {

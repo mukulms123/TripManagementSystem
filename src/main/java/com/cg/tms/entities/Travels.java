@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,6 +23,7 @@ public class Travels {
 
 	// Added this on my own
 	@OneToOne(mappedBy = "travel", cascade = CascadeType.ALL)
+	@JoinColumn(name = "bus_id")
 	private Bus bus;
 
 	// Constructor without Id
@@ -99,7 +101,6 @@ public class Travels {
 	public void addBus(Bus bus) {
 		bus.setTravel(this);
 		this.setBus(bus);
-
 	}
 
 	// ToString with Bus

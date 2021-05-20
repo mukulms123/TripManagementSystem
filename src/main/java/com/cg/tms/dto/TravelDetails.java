@@ -1,12 +1,16 @@
 package com.cg.tms.dto;
 
+import com.cg.tms.entities.Bus;
+
 public class TravelDetails {
 	private int travelsId;
 	private String travelsName;
 	private String agentName;
 	private String address;
 	private String contact;
+	private int busId;
 
+	private Bus bus;
 	//Getters and Setters
 	public String getAddress() {
 		return address;
@@ -46,6 +50,22 @@ public class TravelDetails {
 
 	public void setAgentName(String agentName) {
 		this.agentName = agentName;
+	}
+	
+	public Bus getBus() {
+		return bus;
+	}
+
+	public void setBus(Bus bus) {
+		this.bus = bus;
+	}
+
+	public int getBusId() {
+		return busId;
+	}
+
+	public void setBusId(int busId) {
+		this.busId = busId;
 	}
 
 	//Constructor

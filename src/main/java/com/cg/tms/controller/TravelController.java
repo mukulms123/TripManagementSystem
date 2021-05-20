@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.tms.dto.TravelDetails;
 import com.cg.tms.dto.TravelRequest;
+import com.cg.tms.entities.Bus;
 import com.cg.tms.entities.Travels;
 import com.cg.tms.exceptions.TravelsNotFoundException;
 import com.cg.tms.service.ITravelsService;
@@ -48,6 +49,9 @@ public class TravelController {
 	public TravelDetails addTravels(@RequestBody @Valid TravelRequest requestData) {
 		Travels trav = new Travels(requestData.getTravelsName(), requestData.getAgentName(), requestData.getAddress(),
 				requestData.getContact());
+		if (requestData.getBus() != null) {
+			trav.setBus(requestData.getBus());
+		}
 		Travels added = tService.addTravels(trav);
 		TravelDetails travelDetails = travelUtil.toTravelsDetail(added);
 		return travelDetails;
