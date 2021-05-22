@@ -1,5 +1,6 @@
 package com.cg.tms.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class Admin {
 	private String email;
 	private String mobile;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 
 	public int getAdminId() {

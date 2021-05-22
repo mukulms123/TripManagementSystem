@@ -2,6 +2,7 @@ package com.cg.tms.entities;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class PaymentDetails {
 	private String paymentStatus;
 	private int userId;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Package1 pack;
 
 	public PaymentDetails() {

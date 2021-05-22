@@ -8,7 +8,6 @@ public class TravelDetails {
 	private String agentName;
 	private String address;
 	private String contact;
-	private int busId;
 
 	private Bus bus;
 	//Getters and Setters
@@ -58,14 +57,6 @@ public class TravelDetails {
 
 	public void setBus(Bus bus) {
 		this.bus = bus;
-	}
-
-	public int getBusId() {
-		return busId;
-	}
-
-	public void setBusId(int busId) {
-		this.busId = busId;
 	}
 
 	//Constructor

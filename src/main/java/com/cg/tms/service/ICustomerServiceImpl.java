@@ -64,6 +64,12 @@ public class ICustomerServiceImpl implements ICustomerService {
 	@Override
 	public Customer deleteCustomer(Customer customer) throws CustomerNotFoundException {
 		Customer cust = viewCustomer(customer.getCustomerId());
+		Optional<User> opt = uRep.findById(customer.getCustomerId());
+		if(!opt.isPresent()) {
+			throw new CustomerNotFoundException("Customer not found at ID:"+customer.getCustomerId());
+		}
+		User user = opt.get();
+		uRep.delete(user);
 		cRep.delete(cust);
 		logger.info("********Deleting Customer by id: " + cust.getCustomerId() + "********");
 		return cust;

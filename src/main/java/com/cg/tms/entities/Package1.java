@@ -22,14 +22,14 @@ public class Package1 {
 	private String packageType;
 	private double packageCost;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "payment_id")
 	private PaymentDetails payment;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ticket_id")
 	private TicketDetails ticket;
 
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "pack")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pack")
 	private Hotel hotel;
 
 	@OneToOne(cascade = CascadeType.ALL)

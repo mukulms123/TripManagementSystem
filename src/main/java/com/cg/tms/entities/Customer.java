@@ -26,8 +26,7 @@ public class Customer {
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private Set<Feedback> feedbacks = new HashSet<>();
 
-	@OneToOne
-	(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 
 	// Parameterized constructor without feedback and Id

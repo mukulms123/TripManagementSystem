@@ -21,12 +21,12 @@ public class TicketDetails {
 	@GeneratedValue(generator = "system-uuid")
 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String ticketId;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "route_id")
 	private Route route;
 	private String status;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Package1 pack;
 
 	// constructor without id and route

@@ -13,9 +13,9 @@ public class RouteRequest {
 	private String routeFrom;
 	@NotNull
 	private String routeTo;
-	@NotNull
+//	@NotNull
 	private LocalDateTime departureTime;
-	@NotNull
+//	@NotNull
 	private LocalDateTime arrivalTime;
 	@NotNull
 	private LocalDate doj;

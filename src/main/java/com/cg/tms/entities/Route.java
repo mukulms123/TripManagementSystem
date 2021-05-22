@@ -26,7 +26,7 @@ public class Route {
 	private String routeFrom;
 	private String routeTo;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private List<Bus> buses;
 	private LocalDateTime departureTime;
 	private LocalDateTime arrivalTime;

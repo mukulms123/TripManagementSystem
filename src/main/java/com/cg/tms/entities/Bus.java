@@ -1,5 +1,6 @@
 package com.cg.tms.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ public class Bus {
 	private String busType;
 	private String busNumber;
 	private int capacity;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "travel_id")
 	private Travels travel;
 	

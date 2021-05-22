@@ -17,11 +17,7 @@ public class TravelUtil {
 		TravelDetails travelDetails = new TravelDetails(travel.getTravelsId(), travel.getTravelsName(),
 				travel.getAgentName(), travel.getAddress(), travel.getContact());
 		Bus bus = travel.getBus();
-		if (bus != null) {
-			travelDetails.setBusId(bus.getBusId());
-		} else {
-			travelDetails.setBusId(0);
-		}
+		travelDetails.setBus(bus);
 		return travelDetails;
 	}
 

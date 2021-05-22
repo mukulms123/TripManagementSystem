@@ -1,5 +1,6 @@
 package com.cg.tms.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class Hotel {
 	private double rent;
 	private String status;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id")
 	private Package1 pack;
 
