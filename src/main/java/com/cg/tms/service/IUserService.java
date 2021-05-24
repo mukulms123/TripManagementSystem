@@ -8,4 +8,5 @@ public interface IUserService {
 public  User addNewUser(User user);
 public User signIn(User user) throws UserNotFoundException;
 public User signOut(User user);
+public User verifyUser(int id) throws UserNotFoundException;
 }

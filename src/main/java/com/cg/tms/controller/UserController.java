@@ -6,6 +6,7 @@ import javax.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -72,6 +73,14 @@ public class UserController {
 		User user = new User(requestData.getUserId(), requestData.getUserType(), requestData.getPassword());
 		user.setCustomer(requestData.getCustomer());
 		User userFound = uService.signOut(user);
+		UserDetails userDetails = userUtil.toDetailsUser(userFound);
+		return userDetails;
+	}
+	
+	@ResponseStatus(code = HttpStatus.OK)
+	@GetMapping("/verify/{id}")
+	public UserDetails userVerify( @PathVariable("id") @Min(1) int id) {
+		User userFound = uService.verifyUser(id);
 		UserDetails userDetails = userUtil.toDetailsUser(userFound);
 		return userDetails;
 	}

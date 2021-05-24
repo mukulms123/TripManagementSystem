@@ -99,4 +99,19 @@ public class IUserServiceImpl implements IUserService {
 		return newUser;
 	}
 
+	@Override
+	public User verifyUser(int id) {
+		Optional<User> opt = uRep.findById(id);
+		if(!opt.isPresent())
+		{
+			throw new UserNotFoundException("User Not Found At ID:"+id);
+		}
+		
+		User user = opt.get();
+		logger.info("********Verifying by Id: " + user.getUserId() + "  " + user.getPassword() + "********");
+		return user;
+	}
+	
+	
+
 }
