@@ -8,8 +8,8 @@ public class RouteDetails {
 	private int routeId;
 	private String  routeFrom;
 	private String  routeTo;
-	private  LocalDateTime  departureTime;
-	private  LocalDateTime   arrivalTime;
+	private  LocalDate  departureTime;
+	private  LocalDate  arrivalTime;
 	private  LocalDate   doj;
 	private String pickupPoint;
 	private  double fare;
@@ -31,16 +31,16 @@ public class RouteDetails {
 	public void setRouteTo(String routeTo) {
 		this.routeTo = routeTo;
 	}
-	public LocalDateTime getDepartureTime() {
+	public LocalDate getDepartureTime() {
 		return departureTime;
 	}
-	public void setDepartureTime(LocalDateTime departureTime) {
+	public void setDepartureTime(LocalDate departureTime) {
 		this.departureTime = departureTime;
 	}
-	public LocalDateTime getArrivalTime() {
+	public LocalDate getArrivalTime() {
 		return arrivalTime;
 	}
-	public void setArrivalTime(LocalDateTime arrivalTime) {
+	public void setArrivalTime(LocalDate arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 	public LocalDate getDoj() {
@@ -63,8 +63,8 @@ public class RouteDetails {
 	}
 	
 	//Constructor
-	public RouteDetails(int routeId, String routeFrom, String routeTo, LocalDateTime departureTime,
-			LocalDateTime arrivalTime, LocalDate doj, String pickupPoint, double fare) {
+	public RouteDetails(int routeId, String routeFrom, String routeTo, LocalDate departureTime,
+			LocalDate arrivalTime, LocalDate doj, String pickupPoint, double fare) {
 		
 		this.routeId = routeId;
 		this.routeFrom = routeFrom;

@@ -14,9 +14,9 @@ public class RouteRequest {
 	@NotNull
 	private String routeTo;
 //	@NotNull
-	private LocalDateTime departureTime;
+	private LocalDate departureTime;
 //	@NotNull
-	private LocalDateTime arrivalTime;
+	private LocalDate arrivalTime;
 	@NotNull
 	private LocalDate doj;
 	@NotNull
@@ -43,19 +43,19 @@ public class RouteRequest {
 		this.routeTo = routeTo;
 	}
 
-	public LocalDateTime getDepartureTime() {
+	public LocalDate getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(LocalDateTime departureTime) {
+	public void setDepartureTime(LocalDate departureTime) {
 		this.departureTime = departureTime;
 	}
 
-	public LocalDateTime getArrivalTime() {
+	public LocalDate getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(LocalDateTime arrivalTime) {
+	public void setArrivalTime(LocalDate arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 

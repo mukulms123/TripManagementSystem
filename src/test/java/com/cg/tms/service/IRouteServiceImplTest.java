@@ -34,7 +34,7 @@ public class IRouteServiceImplTest {
 
 	@Test
 	public void addRoute() {
-		Route route = new Route("delhi", "faridabad", LocalDateTime.now(), LocalDateTime.now(), LocalDate.now(),
+		Route route = new Route("delhi", "faridabad", LocalDate.now(), LocalDate.now(), LocalDate.now(),
 				"delhi", 300.0);
 		Bus bus1 = new Bus("dtc", "567", 20);
 		Bus bus2 = new Bus("travels", "789", 30);
@@ -50,10 +50,10 @@ public class IRouteServiceImplTest {
 
 	@Test
 	public void updateRoute() throws RouteNotFoundException {
-		Route route = new Route("delhi", "faridabad", LocalDateTime.now(), LocalDateTime.now(), LocalDate.now(),
+		Route route = new Route("delhi", "faridabad", LocalDate.now(), LocalDate.now(), LocalDate.now(),
 				"delhi", 300.0);
 		em.persist(route);
-		Route routeUpdate = new Route("delhi", "noida", LocalDateTime.now(), LocalDateTime.now(), LocalDate.now(),
+		Route routeUpdate = new Route("delhi", "noida", LocalDate.now(), LocalDate.now(), LocalDate.now(),
 				"delhi", 300.0);
 		routeUpdate.setRouteId(route.getRouteId());
 
@@ -63,7 +63,7 @@ public class IRouteServiceImplTest {
 
 	@Test
 	public void removeRoute() {
-		Route route = new Route("delhi", "faridabad", LocalDateTime.now(), LocalDateTime.now(), LocalDate.now(),
+		Route route = new Route("delhi", "faridabad", LocalDate.now(), LocalDate.now(), LocalDate.now(),
 				"delhi", 300.0);
 		em.persist(route);
 		Route routeFound = rService.removeRoute(route.getRouteId());
@@ -72,7 +72,7 @@ public class IRouteServiceImplTest {
 
 	@Test
 	public void searchRoute() {
-		Route route = new Route("delhi", "faridabad", LocalDateTime.now(), LocalDateTime.now(), LocalDate.now(),
+		Route route = new Route("delhi", "faridabad", LocalDate.now(), LocalDate.now(), LocalDate.now(),
 				"delhi", 300.0);
 		em.persist(route);
 		Route routeFound = rService.searchRoute(route.getRouteId());
@@ -80,7 +80,7 @@ public class IRouteServiceImplTest {
 	}
 
 	public void viewRouteList() {
-		Route route = new Route("delhi", "faridabad", LocalDateTime.now(), LocalDateTime.now(), LocalDate.now(),
+		Route route = new Route("delhi", "faridabad", LocalDate.now(), LocalDate.now(), LocalDate.now(),
 				"delhi", 300.0);
 		em.persist(route);
 		List<Route> routeFound = rService.viewRouteList();

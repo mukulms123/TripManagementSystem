@@ -28,8 +28,8 @@ public class Route {
 
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private List<Bus> buses;
-	private LocalDateTime departureTime;
-	private LocalDateTime arrivalTime;
+	private LocalDate departureTime;
+	private LocalDate arrivalTime;
 	private LocalDate doj;
 	private String pickupPoint;
 	private double fare;
@@ -49,7 +49,7 @@ public class Route {
 	}
 
 	// constructor without id and buses
-	public Route(String routeFrom, String routeTo, LocalDateTime departureTime, LocalDateTime arrivalTime,
+	public Route(String routeFrom, String routeTo, LocalDate departureTime, LocalDate arrivalTime,
 			LocalDate doj, String pickupPoint, double fare) {
 		this.routeFrom = routeFrom;
 		this.routeTo = routeTo;
@@ -61,7 +61,7 @@ public class Route {
 	}
 
 	// constructor without bus
-	public Route(int routeId, String routeFrom, String routeTo, LocalDateTime departureTime, LocalDateTime arrivalTime,
+	public Route(int routeId, String routeFrom, String routeTo, LocalDate departureTime, LocalDate arrivalTime,
 			LocalDate doj, String pickupPoint, double fare) {
 		super();
 		this.routeId = routeId;
@@ -99,19 +99,19 @@ public class Route {
 		this.routeTo = routeTo;
 	}
 
-	public LocalDateTime getDepartureTime() {
+	public LocalDate getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(LocalDateTime departureTime) {
+	public void setDepartureTime(LocalDate departureTime) {
 		this.departureTime = departureTime;
 	}
 
-	public LocalDateTime getArrivalTime() {
+	public LocalDate getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(LocalDateTime arrivalTime) {
+	public void setArrivalTime(LocalDate arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 

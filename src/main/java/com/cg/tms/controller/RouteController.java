@@ -49,7 +49,7 @@ public class RouteController {
 		Route rout = new Route(requestData.getRouteFrom(), requestData.getRouteTo(), requestData.getDepartureTime(),
 				requestData.getArrivalTime(), requestData.getDoj(), requestData.getPickupPoint(),
 				requestData.getFare());
-		
+		System.out.println(rout);
 		Route route = rService.addRoute(rout);
 		RouteDetails routeDetails = routeUtil.toRouteDetail(route);
 		return routeDetails;
